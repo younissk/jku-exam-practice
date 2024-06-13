@@ -1,4 +1,4 @@
-import { AppShell, Burger, Group, ScrollArea, Skeleton } from "@mantine/core";
+import { AppShell, Burger, Group, ScrollArea } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Link, Outlet } from "react-router-dom";
 import Subjects from "../../data/subjects";
