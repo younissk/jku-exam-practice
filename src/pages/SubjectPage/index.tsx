@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Subjects from "../../../data/subjects";
 import Subject from "../../../data/interfaces/Subject";
 import Tests from "../../../data/tests";
@@ -33,7 +33,7 @@ const SubjectPage = () => {
       <ul>
         {tests.map((test) => (
           <li key={test.id}>
-            <a href={`/test/${test.id}`}>{test.title}</a>
+            <Link to={`/test/${test.id}`}>{test.title}</Link>
           </li>
         ))}
       </ul>
