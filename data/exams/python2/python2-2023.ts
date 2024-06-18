@@ -1,0 +1,606 @@
+import Test from "../../interfaces/Test";
+
+const python2_2023: Test = {
+  id: "python2-2023",
+  subject: "python2",
+  title: "Python 2 Test 2023",
+  description: "Test your Python 2 knowledge",
+  questions: [
+    {
+      id: "q1",
+      question:
+        '<h3>By selecting "I confirm", I hereby declare under oath that I will work on this examination on my own without any help or any third-party assistance.</h3><p>By selecting "I confirm", I understand that noncompliance results in invalidation of the assessment, whereby the invalidated examination will be added to the total number of retakes and noncompliance may result in further legal action.</p>',
+      options: ["I do not confirm", "I confirm"],
+      correctOptions: ["I confirm"],
+    },
+    {
+      id: "q2",
+      question:
+        "<h3>Consider the following Dataset implementation:</h3><pre>import numpy as np\nfrom torch.utils.data import Dataset\n\nclass MyDataset(Dataset):\n    def __init__(self, seed):\n        self.rng = np.random.default_rng(seed)\n\n    def __getitem__(self, index):\n        return self.rng.uniform(size=(5,))</pre><p>Which of the following statements are true?</p>",
+      options: [
+        "An instance of this class would produce infinitely many samples.",
+        "In a multi-processed data loading setting, the returned samples might not be reproducible because the seed of the random number generator is set only in the __init__ method.",
+        "The implementation is incorrect since the __getitem__ method should return a PyTorch tensor and not a NumPy array.",
+        "The __len__ method should be implemented if it is intended to be used in combination with a default DataLoader (with default Sampler).",
+      ],
+      correctOptions: [
+        "An instance of this class would produce infinitely many samples.",
+        "In a multi-processed data loading setting, the returned samples might not be reproducible because the seed of the random number generator is set only in the __init__ method.",
+        "The __len__ method should be implemented if it is intended to be used in combination with a default DataLoader (with default Sampler).",
+      ],
+    },
+    {
+      id: "q3",
+      question:
+        "<h3>Which of the following are benefits of a version control system (VCS) such as git?</h3>",
+      options: [
+        "Efficient tracking of files and their changes.",
+        "Automatic integration of unit tests.",
+        "Access to previous versions.",
+        "Useful for collaboration.",
+      ],
+      correctOptions: [
+        "Efficient tracking of files and their changes.",
+        "Useful for collaboration.",
+        "Access to previous versions.",
+      ],
+    },
+    {
+      id: "q4",
+      question:
+        "<h3>Assume you want to normalize your data and compute a normalization constant from your dataset (e.g., the mean over many samples). What would be the correct way to proceed in terms of training, validation, and test set?</h3>",
+      options: [
+        "Determine the constant for normalization on the whole dataset and apply it to training, validation and test data.",
+        "Determine the constant for normalization on the training and validation data and apply it also to the test data.",
+        "Determine the constant for normalization on the validation and test data and apply it also to the training data.",
+        "Determine the constant for normalization on the training data and apply it also to the validation and test data.",
+      ],
+      correctOptions: [
+        "Determine the constant for normalization on the training data and apply it also to the validation and test data.",
+      ],
+    },
+    {
+      id: "q5",
+      question:
+        "<h3>Assume you have the following binary confusion matrix:</h3><pre>                      Predicted\n                 positive   negative\n------------------------------------\nActual positive |   30          0  |\n       negative |    5         10  |\n------------------------------------</pre><p>Which of the following statements are correct?</p>",
+      options: [
+        "The total number of samples is 45.",
+        "The used model is more likely to predict the negative class.",
+        "The classification performance is perfect.",
+        "There are 30 true positives.",
+      ],
+      correctOptions: [
+        "The total number of samples is 45.",
+        "There are 30 true positives.",
+      ],
+    },
+    {
+      id: "q6",
+      question:
+        "<h3>When training a model using some gradient-based iterative method, how should the loss (computed with some loss function) change?</h3>",
+      options: [
+        "The loss should nearly stay constant (given some user-defined value).",
+        "The loss should be maximized.",
+        "The loss should be minimized.",
+        "The loss is irrelevant when training a model.",
+      ],
+      correctOptions: ["The loss should be minimized."],
+    },
+    {
+      id: "q7",
+      question:
+        '<h3>Assume you have the following categorical data in exactly this fixed order:</h3><pre>"Spider"\n"Frog"\n"Fly"\n"Snail"</pre><p>You are asked to create a one-hot encoding. Which of the following is the correct one-hot encoded representation of "Frog"?</p>',
+      options: [
+        "(1, 0, 0, 0)",
+        "(0, 0, 0, 0)",
+        "(0, 1, 0, 0)",
+        "(0, 0, 1, 0)",
+        "(1, 1, 1, 1)",
+        "(1, 0, 1, 1)",
+        "(0, 0, 0, 1)",
+      ],
+      correctOptions: ["(0, 1, 0, 0)"],
+    },
+    {
+      id: "q8",
+      question:
+        "<h3>Assume you apply the following PyTorch image transformation to some example RGB image:</h3><pre>transforms.Compose([\n    transforms.Grayscale(),\n    transforms.RandomHorizontalFlip(0.5),\n    transforms.RandomVerticalFlip(0.5),\n    transforms.ToTensor()\n])</pre><p>Which of the following statements are correct?</p>",
+      options: [
+        "The resulting image might be both horizontally and vertically flipped.",
+        "The resulting image might not be flipped at all (neither horizontally nor vertically).",
+        "The resulting image will be a PyTorch tensor.",
+        "The resulting image might be vertically flipped.",
+        "The resulting image will be in grayscale.",
+        "The resulting image might be horizontally flipped.",
+      ],
+      correctOptions: [
+        "The resulting image will be a PyTorch tensor.",
+        "The resulting image will be in grayscale.",
+        "The resulting image might be horizontally flipped.",
+        "The resulting image might be vertically flipped.",
+        "The resulting image might be both horizontally and vertically flipped.",
+        "The resulting image might not be flipped at all (neither horizontally nor vertically).",
+      ],
+    },
+    {
+      id: "q9",
+      question: "<h3>What is the primary task of a hash function?</h3>",
+      options: [
+        "To compute a fixed-sized data vector for a given input.",
+        "To compare image data.",
+        "To compute whether two objects are equal.",
+        "To make neural networks work for arbitrary input data.",
+      ],
+      correctOptions: [
+        "To compute a fixed-sized data vector for a given input.",
+      ],
+    },
+    {
+      id: "q10",
+      question:
+        "<h3>Which of the following is the correct order of performing one weight update in PyTorch (you can assume that optimizer is a valid PyTorch optimizer object)?</h3>",
+      options: [
+        "1. Compute loss\n2. Update weights optimizer.step()\n3. Compute gradients loss.backward()\n4. Reset gradients optimizer.zero_grad()",
+        "1. Compute loss\n2. Compute gradients loss.backward()\n3. Update weights optimizer.step()\n4. Reset gradients optimizer.zero_grad()",
+        "1. Compute loss\n2. Compute gradients loss.backward()\n3. Reset gradients optimizer.zero_grad()\n4. Update weights optimizer.step()",
+        "1. Reset gradients optimizer.zero_grad()\n2. Compute loss\n3. Update weights optimizer.step()\n4. Compute gradients loss.backward()",
+      ],
+      correctOptions: [
+        "1. Compute loss\n2. Compute gradients loss.backward()\n3. Update weights optimizer.step()\n4. Reset gradients optimizer.zero_grad()",
+      ],
+    },
+    {
+      id: "q11",
+      question:
+        '<h3>In a survey, you collected people\'s favorite English words (some examples: "house", "tiger", "relaxing", etc.). Which type of data is this?</h3>',
+      options: [
+        "ordinal data",
+        "continuous data",
+        "discrete data",
+        "categorical data",
+      ],
+      correctOptions: ["categorical data"],
+    },
+    {
+      id: "q12",
+      question:
+        "<h3>Which of the following statements are correct regarding a class that derives from torch.nn.Module?</h3>",
+      options: [
+        "The class must not contain other Modules.",
+        "The __getitem__ method returns the training samples.",
+        'The forward method specifies how an input is transformed into an output (the "flow" through the architecture).',
+        "The __init__ method sets up the model architecture.",
+      ],
+      correctOptions: [
+        'The forward method specifies how an input is transformed into an output (the "flow" through the architecture).',
+        "The __init__ method sets up the model architecture.",
+      ],
+    },
+    {
+      id: "q13",
+      question:
+        "<h3>Which of the following are typical data normalization/scaling approaches?</h3>",
+      options: [
+        "Scaling to range [1, 2].",
+        "Scaling to range [-1, 1].",
+        "Scaling to range [0, 1].",
+        "Scaling to zero (0) mean and unit (1) variance.",
+      ],
+      correctOptions: [
+        "Scaling to range [-1, 1].",
+        "Scaling to range [0, 1].",
+        "Scaling to zero (0) mean and unit (1) variance.",
+      ],
+    },
+    {
+      id: "q14",
+      question:
+        "<h3>What is the output of the following code?</h3><pre>import torch\nimport torch.nn as nn\n\nclass MyModule(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.linear = nn.Linear(in_features=2, out_features=3)\n\n    def forward(self, x):\n        out = self.linear(x)\n        return torch.sigmoid(out)\n\ninp = torch.rand(size=(16, 2))\nmy_module = MyModule()\nresult = my_module(inp)\nprint(tuple(result.shape))</pre>",
+      options: [
+        "(16, 2)",
+        "(16, 3, 2)",
+        "(16,)",
+        "(32,)",
+        "(48,)",
+        "(16, 3)",
+        "(16, 2, 3)",
+      ],
+      correctOptions: ["(16, 3)"],
+    },
+    {
+      id: "q15",
+      question:
+        "<h3>Which of the following statements are correct regarding monitoring a model during training?</h3>",
+      options: [
+        "Monitoring might decrease the model performance.",
+        "Monitoring might aid in determining over- or underfitting.",
+        "Monitoring might lead to higher computational run times.",
+        "Monitoring might help in finding issues during training.",
+      ],
+      correctOptions: [
+        "Monitoring might aid in determining over- or underfitting.",
+        "Monitoring might lead to higher computational run times.",
+        "Monitoring might help in finding issues during training.",
+      ],
+    },
+    {
+      id: "q16",
+      question:
+        "<h3>The special method __getitem__ in a torch.utils.data.Dataset derived class should...</h3>",
+      options: [
+        "... return all samples.",
+        "... return the index of a specified sample.",
+        "... return one sample.",
+        "... return minibatched samples.",
+      ],
+      correctOptions: ["... return one sample."],
+    },
+    {
+      id: "q17",
+      question: "<h3>Numerical data can be described as:</h3>",
+      options: [
+        "Quantitative data with mathematical meaning and a natural ordering.",
+        "Quantitative data with mathematical meaning but without a natural ordering.",
+        "Qualitative data without mathematical meaning but with a natural ordering.",
+        "Qualitative data without mathematical meaning.",
+      ],
+      correctOptions: [
+        "Quantitative data with mathematical meaning and a natural ordering.",
+      ],
+    },
+    {
+      id: "q18",
+      question:
+        "<h3>What is the output of the following code?</h3><pre>import torch\n\nclass MyModule(torch.nn.Module):\n    def __init__(self, a):\n        super().__init__()\n        self.a = a\n\n    def forward(self, x):\n        if x > 0:\n            output = x + self.a\n        else:\n            output = x - self.a\n        return output\n\nmy_module = MyModule(2.0)\nc = my_module(5.0)\nprint(c)</pre>",
+      options: [
+        "7.0",
+        "It raises an exception because control flow is not allowed in the forward method.",
+        "It raises an exception at self.a = a because only PyTorch trainable parameters and (sub)modules can be used as attributes.",
+        "It raises an exception because the forward method is not called.",
+      ],
+      correctOptions: ["7.0"],
+    },
+    {
+      id: "q19",
+      question:
+        "<h3>Assume you have a training set and a test set. Which of the following statements are correct regarding data augmentation and these two sets?</h3>",
+      options: [
+        "The test set should not be augmented since only real data should be used for evaluation.",
+        "The bigger the training set is compared to the test set, the fewer augmentations are needed.",
+        "The training set should not be augmented since only real data should be used for training.",
+        "The data augmentations must be the same for both the training set and the test set.",
+      ],
+      correctOptions: [
+        "The test set should not be augmented since only real data should be used for evaluation.",
+      ],
+    },
+    {
+      id: "q20",
+      question: "<h3>Training a neural network for one update will...</h3>",
+      options: [
+        "... perform training until the model overfits on all training samples.",
+        "... perform one weight update.",
+        "... perform training for a fixed number of seconds.",
+        "... perform one training iteration over all training samples.",
+      ],
+      correctOptions: ["... perform one weight update."],
+    },
+    {
+      id: "q21",
+      question:
+        "<h3>Which of the following data augmentation techniques can be applied to image data?</h3>",
+      options: [
+        "dropping out pixels",
+        "rotating",
+        "adding noise",
+        "zooming and/or cropping",
+        "color jittering",
+        "flipping horizontally",
+      ],
+      correctOptions: [
+        "adding noise",
+        "flipping horizontally",
+        "color jittering",
+        "dropping out pixels",
+        "rotating",
+        "zooming and/or cropping",
+      ],
+    },
+    {
+      id: "q22",
+      question:
+        "<h3>Which of the following statements are true regarding data augmentation?</h3>",
+      options: [
+        "Modifications in data augmentation can often be applied on-the-fly.",
+        'Data augmentation is about creating "new" artificial samples by modifying existing samples.',
+        "Modifications in data augmentation heavily depend on the data and task.",
+        "Data augmentation always improves the model performance.",
+      ],
+      correctOptions: [
+        'Data augmentation is about creating "new" artificial samples by modifying existing samples.',
+        "Modifications in data augmentation can often be applied on-the-fly.",
+        "Modifications in data augmentation heavily depend on the data and task.",
+      ],
+    },
+    {
+      id: "q23",
+      question:
+        "<h3>Which of the following statements are correct when talking about normalization/scaling?</h3>",
+      options: [
+        "Normalization/scaling can depend on the method/model.",
+        "Normalization/scaling can depend on the data.",
+        "Normalization/scaling only makes sense for image data.",
+        "Normalization/scaling is always beneficial.",
+      ],
+      correctOptions: [
+        "Normalization/scaling can depend on the data.",
+        "Normalization/scaling can depend on the method/model.",
+      ],
+    },
+    {
+      id: "q24",
+      question:
+        "<h3>Which of the following statements are true regarding loss functions in the area of supervised learning?</h3>",
+      options: [
+        "Depending on the task (e.g., regression vs. classification), different loss functions might be appropriate.",
+        "A loss function measures the distance between the model prediction and the true target value.",
+        "Typically, for a given loss function, the lower the loss, the better the prediction.",
+        "Comparing the values of different loss functions (e.g., mean-squared error vs. cross entropy) is usually not meaningful.",
+      ],
+      correctOptions: [
+        "A loss function measures the distance between the model prediction and the true target value.",
+        "Typically, for a given loss function, the lower the loss, the better the prediction.",
+        "Depending on the task (e.g., regression vs. classification), different loss functions might be appropriate.",
+        "Comparing the values of different loss functions (e.g., mean-squared error vs. cross entropy) is usually not meaningful.",
+      ],
+    },
+    {
+      id: "q25",
+      question:
+        "<h3>Which of the following are commonly used loss functions?</h3>",
+      options: [
+        "rectified linear unit (ReLU)",
+        "sigmoid",
+        "mean-squared error",
+        "cross entropy",
+      ],
+      correctOptions: ["cross entropy", "mean-squared error"],
+    },
+    {
+      id: "q26",
+      question:
+        "<h3>Which of the following statements are true regarding early stopping?</h3>",
+      options: [
+        "The stopping can be achieved by some heuristic (e.g., no validation loss improvement for a defined number of updates/epochs).",
+        "Using some validation set, early stopping can be applied to cancel/stop the training early.",
+        "Early stopping is done automatically if the training loss reaches 0.",
+        "Early stopping guarantees to return the best possible model, i.e., no better model could have been found if the training had continued.",
+      ],
+      correctOptions: [
+        "The stopping can be achieved by some heuristic (e.g., no validation loss improvement for a defined number of updates/epochs).",
+        "Using some validation set, early stopping can be applied to cancel/stop the training early.",
+      ],
+    },
+    {
+      id: "q27",
+      question:
+        "<h3>Which of the following statements are true regarding minibatch learning?</h3>",
+      options: [
+        "The batch size is a hyperparameter.",
+        "Minibatch learning can potentially benefit from broadcast computations.",
+        "The bigger the batch size, the better the learning (in terms of predictive model performance).",
+        "The samples within a minibatch are used for one update step.",
+      ],
+      correctOptions: [
+        "The batch size is a hyperparameter.",
+        "Minibatch learning can potentially benefit from broadcast computations.",
+        "The samples within a minibatch are used for one update step.",
+      ],
+    },
+    {
+      id: "q28",
+      question:
+        "<h3>Assume a classification task where you want to predict whether it is day or night based on (nature) images. Which of the following data augmentation techniques might be problematic?</h3>",
+      options: [
+        "flipping horizontally",
+        "color jittering",
+        "rotating by +-5 degrees",
+        "adding slight noise",
+      ],
+      correctOptions: ["color jittering"],
+    },
+    {
+      id: "q29",
+      question:
+        "<h3>When creating minibatches and trying to stack input arrays in PyTorch (using torch.utils.data.DataLoader), it can happen that not all arrays of a batch are of the same shape. Which of the following statements are correct?</h3>",
+      options: [
+        "Stacking can be skipped and the arrays can just be kept in a list.",
+        "A DataLoader cannot actually be used in this case.",
+        "Arrays of unequal shape must be dropped/excluded.",
+        "Padding can be applied to equalize all array shapes.",
+      ],
+      correctOptions: [
+        "Stacking can be skipped and the arrays can just be kept in a list.",
+        "Padding can be applied to equalize all array shapes.",
+      ],
+    },
+    {
+      id: "q30",
+      question:
+        "<h3>Consider the following incomplete implementation of a custom Dataset which should return samples from an already existing numpy array samples and (in addition) an ID for debugging purposes:</h3><pre>import numpy as np\nfrom torch.utils.data import Dataset\n\n# numpy array of shape (N, F), where\n# N = number of samples and\n# F = number of features per sample\nsamples = ...\n\nclass MyDataset(Dataset):\n    def __getitem__(self, index):\n        return np.array([samples[index], index])\n</pre>",
+      options: [
+        "def __getitem__(self, index):\n    return np.array([samples[index], index])",
+        "def __getitem__(self, index):\n    return np.array([samples, index])",
+        "def __getitem__(self, index):\n    return samples, index",
+        "def __getitem__(self, index):\n    return samples[index], index",
+      ],
+      correctOptions: [
+        "def __getitem__(self, index):\n    return samples[index], index",
+      ],
+    },
+    {
+      id: "q31",
+      question:
+        '<h3>What is the output of the following code?</h3><pre>import torch\nfrom torch.utils.data import Dataset, DataLoader\n\nclass MyDataset(Dataset):\n    def __getitem__(self, index):\n        return torch.tensor([10, 20])\n\n    def __len__(self):\n        return 6\n\ndataset = MyDataset()\nloader = DataLoader(dataset, batch_size=3)\n\nfor i, x in enumerate(loader):\n    print(f"{i}: {tuple(x.shape)}")</pre>',
+      options: [
+        "0: (3, 3, 2)",
+        "0: (6, 2)\n1: (6, 2)",
+        "0: (3, 2)\n1: (3, 2)",
+        "0: (3, 6, 2)",
+        "0: (2,)\n1: (2,)\n2: (2,)",
+        "0: (6, 2)\n1: (6, 2)\n2: (6, 2)",
+        "0: (3, 2)\n1: (3, 2)\n2: (3, 2)\n3: (3, 2)\n4: (3, 2)\n5: (3, 2)",
+      ],
+      correctOptions: ["0: (3, 2)\n1: (3, 2)"],
+    },
+    {
+      id: "q32",
+      question:
+        "<h3>Why is the following code problematic (you can assume correct inputs, shapes and arguments)?</h3><pre>import torch\n\nclass MyModule(torch.nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.linear_list = [\n            torch.nn.Linear(...),\n            torch.nn.Sigmoid(),\n            torch.nn.Linear(...)\n        ]\n\n    def forward(self, x):\n        out = x\n        for module in self.linear_list:\n            out = module(out)\n        return out</pre>",
+      options: [
+        "linear_list is not applied like a torch.nn.Module should, i.e., the code in the forward method should be out = linear_list(x).",
+        "The attribute linear_list is a plain Python list and will thus be ignored by the automatic parameter registration.",
+        "linear_list should be created in the forward method instead of the __init__ method.",
+        "Just like torch.nn.Sigmoid, torch.nn.Linear must only be applied once.",
+      ],
+      correctOptions: [
+        "The attribute linear_list is a plain Python list and will thus be ignored by the automatic parameter registration.",
+      ],
+    },
+    {
+      id: "q33",
+      question:
+        "<h3>Which statements regarding PyTorch's parameter registration of a torch.nn.Module are true?</h3>",
+      options: [
+        "When assigned as attribute, a torch.nn.Parameter will automatically be registered.",
+        "A torch.nn.Module must always contain at least one (trainable) parameter.",
+        "When assigned as attribute, a torch.nn.Module (or submodule) will automatically be registered.",
+        "Parameters and modules can be registered manually.",
+      ],
+      correctOptions: [
+        "When assigned as attribute, a torch.nn.Parameter will automatically be registered.",
+        "When assigned as attribute, a torch.nn.Module (or submodule) will automatically be registered.",
+        "Parameters and modules can be registered manually.",
+      ],
+    },
+    {
+      id: "q34",
+      question:
+        "<h3>In PyTorch, why can the gradient computation and the creation of the computational graph typically be disabled in the evaluation phase?</h3>",
+      options: [
+        "The gradients during evaluation are approximately zero, so they can be replaced with the constant 0 to reduce computational run time.",
+        "The gradients are the same during evaluation, so they can be copied from the training phase.",
+        "Computing the gradients during evaluation would change the model parameters.",
+        "The model parameters are not updated during evaluation, so computing gradients is unnecessary.",
+      ],
+      correctOptions: [
+        "The model parameters are not updated during evaluation, so computing gradients is unnecessary.",
+      ],
+    },
+    {
+      id: "q35",
+      question:
+        "<h3>Which of the following statements are true regarding loss functions in the area of supervised learning?</h3>",
+      options: [
+        "Depending on the task (e.g., regression vs. classification), different loss functions might be appropriate.",
+        "A loss function measures the distance between the model prediction and the true target value.",
+        "Typically, for a given loss function, the lower the loss, the better the prediction.",
+        "Comparing the values of different loss functions (e.g., mean-squared error vs. cross entropy) is usually not meaningful.",
+      ],
+      correctOptions: [
+        "A loss function measures the distance between the model prediction and the true target value.",
+        "Typically, for a given loss function, the lower the loss, the better the prediction.",
+        "Depending on the task (e.g., regression vs. classification), different loss functions might be appropriate.",
+        "Comparing the values of different loss functions (e.g., mean-squared error vs. cross entropy) is usually not meaningful.",
+      ],
+    },
+    {
+      id: "q36",
+      question:
+        "<h3>Which of the following are typical data normalization/scaling approaches?</h3>",
+      options: [
+        "Scaling to range [1, 2].",
+        "Scaling to range [-1, 1].",
+        "Scaling to range [0, 1].",
+        "Scaling to zero (0) mean and unit (1) variance.",
+      ],
+      correctOptions: [
+        "Scaling to range [-1, 1].",
+        "Scaling to range [0, 1].",
+        "Scaling to zero (0) mean and unit (1) variance.",
+      ],
+    },
+    {
+      id: "q37",
+      question:
+        "<h3>Assume a classification task where you want to predict the whether it is day or night based on (nature) images. Which of the following data augmentation techniques might be problematic?</h3>",
+      options: [
+        "flipping horizontally",
+        "color jittering",
+        "rotating by +-5 degrees",
+        "adding slight noise",
+      ],
+      correctOptions: ["color jittering"],
+    },
+    {
+      id: "q38",
+      question:
+        "<h3>Which of the following statements are true regarding early stopping?</h3>",
+      options: [
+        "The stopping can be achieved by some heuristic (e.g., no validation loss improvement for a defined number of updates/epochs).",
+        "Using some validation set, early stopping can be applied to cancel/stop the training early.",
+        "Early stopping is done automatically if the training loss reaches 0.",
+        "Early stopping guarantees to return the best possible model, i.e., no better model could have been found if the training had continued.",
+      ],
+      correctOptions: [
+        "The stopping can be achieved by some heuristic (e.g., no validation loss improvement for a defined number of updates/epochs).",
+        "Using some validation set, early stopping can be applied to cancel/stop the training early.",
+      ],
+    },
+    {
+      id: "q39",
+      question:
+        "<h3>When creating minibatches and trying to stack input arrays in PyTorch (using torch.utils.data.DataLoader), it can happen that not all arrays of a batch are of the same shape. Which of the following statements are correct?</h3>",
+      options: [
+        "Stacking can be skipped and the arrays can just be kept in a list.",
+        "A DataLoader cannot actually be used in this case.",
+        "Arrays of unequal shape must be dropped/excluded.",
+        "Padding can be applied to equalize all array shapes.",
+      ],
+      correctOptions: [
+        "Stacking can be skipped and the arrays can just be kept in a list.",
+        "Padding can be applied to equalize all array shapes.",
+      ],
+    },
+    {
+      id: "q40",
+      question:
+        "<h3>Consider a binary classification task where you want to classify sensors into either working (negative class) or faulty (positive class). There are roughly equally many working as faulty sensors. Which of the following evaluation metrics are appropriate for measuring the model performance?</h3>",
+      options: [
+        "accuracy (ACC)",
+        "mean-squared error (MSE)",
+        "mean absolute error (MAE)",
+        "true positive rate (TPR)",
+      ],
+      correctOptions: ["accuracy (ACC)", "true positive rate (TPR)"],
+    },
+    {
+      id: "q41",
+      question:
+        '<h3>What is the output of the following code?</h3><pre>import torch\n\ndef function(x: torch.Tensor):\n    return x if x.max() > 5 else x * -1\n\nscripted_function = torch.jit.script(function)\ntraced_function = torch.jit.trace(function, example_inputs=torch.tensor([4, 5, 6]))\n\nactual_input = torch.tensor([1, 2, 3])\nprint("s:", scripted_function(actual_input).tolist())\nprint("t:", traced_function(actual_input).tolist())</pre>',
+      options: [
+        "s: [-1, -2, -3]\nt: [-4, -5, -6]",
+        "s: [1, 2, 3]\nt: [-1, -2, -3]",
+        "s: [1, 2, 3]\nt: [4, 5, 6]",
+        "s: [-1, -2, -3]\nt: [1, 2, 3]",
+        "s: [1, 2, 3]\nt: [-4, -5, -6]",
+        "s: [-1, -2, -3]\nt: [4, 5, 6]",
+        "s: [1, 2, 3]\nt: [1, 2, 3]",
+        "s: [-1, -2, -3]\nt: [-1, -2, -3]",
+      ],
+      correctOptions: ["s: [-1, -2, -3]\nt: [1, 2, 3]"],
+    },
+  ],
+};
+
+export default python2_2023;
