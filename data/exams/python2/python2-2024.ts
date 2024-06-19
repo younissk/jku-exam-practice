@@ -1,7 +1,7 @@
 import Test from "../../interfaces/Test";
 
 const python2_2024: Test = {
-  id: "python2-2024",
+  id: "python2_2024",
   subject: "python2",
   title: "Python 2 Test 2024",
   description: "Test your Python 2 knowledge",
