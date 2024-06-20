@@ -6,6 +6,23 @@ export default interface Test {
   questions: MultipleChoiceQuestion[];
 }
 
+export interface Question {
+  id: string;
+  courseId: string;
+  source: string;
+  year: string;
+  topics: string[];
+  options?: string[];
+  type: QuestionType;
+  question: string;
+  correctAnswer: string[];
+}
+
+export enum QuestionType {
+  MultipleChoice = "MultipleChoice",
+  TrueFalse = "TrueFalse",
+}
+
 export interface MultipleChoiceQuestion {
   id: string;
   question: string;

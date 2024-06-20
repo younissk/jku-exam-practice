@@ -3,6 +3,7 @@ import { AppLayout } from "../pages/layout";
 import SubjectPage from "../pages/SubjectPage";
 import TestPage from "../pages/TestPage";
 import IndexPage from "../pages";
+import TestSimulator from "../pages/TestSimulator";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
         {
             path: "subject/:subjectId",
             element: <SubjectPage />,
+        },
+        {
+          path: "test-simulation",
+          element: <TestSimulator />,
         },
         {
             path: "test/:testId",
