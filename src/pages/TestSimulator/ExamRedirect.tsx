@@ -14,7 +14,7 @@ const ExamRedirect = () => {
     return <Navigate to={"/"} />;
   }
 
-  const { setQuestions, questions } = useTestStore();
+  const { setQuestions } = useTestStore();
 
   const navigate = useNavigate();
 
