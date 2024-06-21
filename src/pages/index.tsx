@@ -11,7 +11,7 @@ import "../index.css"
 
 const IndexPage = () => {
   const { source, year, subject } = useSearchStore();
-  const { setQuestions } = useTestStore();
+  const { setQuestions, resetEverything } = useTestStore();
   const navigate = useNavigate();
 
   const mutation = useMutation({
@@ -39,6 +39,7 @@ const IndexPage = () => {
             <p>{data.length} questions found</p>
             <Button
               onClick={() => {
+                resetEverything();
                 setQuestions(data);
                 navigate("/test-simulation");
               }}
@@ -64,6 +65,7 @@ const IndexPage = () => {
                   "2024",
                   "Exam"
                 );
+                resetEverything();
                 setQuestions(data);
                 navigate("/test-simulation");
               }}
@@ -79,6 +81,7 @@ const IndexPage = () => {
                   "2023",
                   "Exam"
                 );
+                resetEverything();
                 setQuestions(data);
                 navigate("/test-simulation");
               }}
@@ -94,6 +97,7 @@ const IndexPage = () => {
                   "2022",
                   "Exam"
                 );
+                resetEverything();
                 setQuestions(data);
                 navigate("/test-simulation");
               }}
@@ -112,6 +116,7 @@ const IndexPage = () => {
                   "2024",
                   "Exam"
                 );
+                resetEverything();
                 setQuestions(data);
                 navigate("/test-simulation");
               }}
@@ -127,6 +132,7 @@ const IndexPage = () => {
                   "2023",
                   "Exam"
                 );
+                resetEverything();
                 setQuestions(data);
                 navigate("/test-simulation");
               }}
@@ -142,6 +148,7 @@ const IndexPage = () => {
                   "2022",
                   "Exam"
                 );
+                resetEverything();
                 setQuestions(data);
                 navigate("/test-simulation");
               }}
@@ -160,6 +167,7 @@ const IndexPage = () => {
                   "2024",
                   "Exam"
                 );
+                resetEverything();
                 setQuestions(data);
                 navigate("/test-simulation");
               }}
@@ -175,6 +183,7 @@ const IndexPage = () => {
                   "2023",
                   "Exam"
                 );
+                resetEverything();
                 setQuestions(data);
                 navigate("/test-simulation");
               }}
@@ -190,6 +199,7 @@ const IndexPage = () => {
                   "2022",
                   "Exam"
                 );
+                resetEverything();
                 setQuestions(data);
                 navigate("/test-simulation");
               }}
