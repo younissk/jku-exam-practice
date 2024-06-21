@@ -5,6 +5,7 @@ import TestPage from "../pages/TestPage";
 import IndexPage from "../pages";
 import TestSimulator from "../pages/TestSimulator";
 import AboutPage from "../pages/AboutPage";
+import ExamRedirect from "../pages/TestSimulator/ExamRedirect";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "subject/:subjectId",
         element: <SubjectPage />,
+      },
+      {
+        path: "exam",
+        element: <ExamRedirect />,
       },
       {
         path: "test-simulation",

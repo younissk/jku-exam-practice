@@ -2,528 +2,752 @@
     {
       "id": "1",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
+      "source": "Retry Exam",
+      "year": "2022",
       "topics": ["Unit 4: Introduction to Reinforcement Learning"],
       "type": "MultipleChoice",
-      "question": "Which of the following are parts of a Markov decision process?",
+      "question": "Which of the following is/are parts of a Markov decision process?",
       "options": [
         "A set of possible rewards.",
         "A set of possible states.",
-        "A set of possible actions.",
-        "A set of possible state transitions."
+        "A set of possible starting positions.",
+        "A set of possible actions."
       ],
       "correctAnswer": ["A set of possible states.", "A set of possible actions."]
     },
     {
       "id": "2",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 4: Introduction to Reinforcement Learning"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 3: Recurrent Neural Networks"],
       "type": "MultipleChoice",
-      "question": "Assume a reinforcement learning scenario with a 2-dimensional location grid of size 10x10. Further assume that a robot (the agent) is placed randomly on this grid and must move to the target destination, which is also somewhere random on this grid. There are 4 possible movements: up, down, left and right. If the robot tries to go off the grid, it remains at the same location, but there will be a penalty of -5 (negative reward). Otherwise, move actions do not give any reward (0). If the robot reaches the target, +20 is awarded (positive reward). Which of the following statements are true?",
+      "question": "Assume you have a sequence of 10 elements, and each element has 4 features. Further assume that you have a standard, single-layer RNN with a hidden state size of 5. What is the size of the first RNN output?",
       "options": [
-        "There can be policies A and B which are both optimal (w.r.t. the final reward) despite requiring a different total number of steps to reach the target destination.",
-        "There are policies that reach the target destination but have a final reward of < 20.",
-        "An optimal policy will give a final reward of 20.",
-        "There are policies that never reach the target destination."
+        "5",
+        "10",
+        "4",
+        "40"
       ],
-      "correctAnswer": [
-        "An optimal policy will give a final reward of 20.",
-        "There are policies that reach the target destination but have a final reward of < 20.",
-        "There are policies that never reach the target destination.",
-        "There can be policies A and B which are both optimal (w.r.t. the final reward) despite requiring a different total number of steps to reach the target destination."
-      ]
+      "correctAnswer": ["5"]
     },
     {
       "id": "3",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 5: Drug Discovery"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 3: Recurrent Neural Networks"],
       "type": "MultipleChoice",
-      "question": "The 3D structure of a molecule ...",
+      "question": "What is the general data flow through an RNN language model?",
       "options": [
-        "... determines its functionality.",
-        "... is straightforward to predict if the sequence of atoms is known.",
-        "... is expensive to determine experimentally.",
-        "... can be different for the same molecular graph."
+        "input -> encoder -> decoder -> RNN",
+        "input -> decoder -> RNN -> encoder",
+        "input -> RNN -> encoder -> decoder",
+        "input -> encoder -> RNN -> decoder"
       ],
-      "correctAnswer": [
-        "... determines its functionality.",
-        "... can be different for the same molecular graph.",
-        "... is expensive to determine experimentally."
-      ]
+      "correctAnswer": ["input -> encoder -> RNN -> decoder"]
     },
     {
       "id": "4",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
+      "source": "Retry Exam",
+      "year": "2022",
       "topics": ["Unit 5: Drug Discovery"],
       "type": "MultipleChoice",
-      "question": "What are typical problems/challenges in traditional drug discovery?",
+      "question": "Which of the following statements is/are true about protein folding?",
       "options": [
-        "Success rates can be very low.",
-        "It is a very long/time-consuming process.",
-        "It is an expensive process.",
-        "Finding suitable molecules is difficult and/or cumbersome because of the huge amount of possible candidates."
+        "The number of possible ways to fold is extremely high.",
+        "The protein folding problem deals with deriving the 3D structure from the amino acid sequence.",
+        "An amino acid sequence can be folded in exactly one way.",
+        "High throughput folding is about experimentally determining the 3D structure."
       ],
       "correctAnswer": [
-        "It is an expensive process.",
-        "It is a very long/time-consuming process.",
-        "Finding suitable molecules is difficult and/or cumbersome because of the huge amount of possible candidates.",
-        "Success rates can be very low."
+        "The protein folding problem deals with deriving the 3D structure from the amino acid sequence.",
+        "The number of possible ways to fold is extremely high."
       ]
     },
     {
       "id": "5",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 2: Vanishing Gradients"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 5: Drug Discovery"],
       "type": "MultipleChoice",
-      "question": "Which of the following statements are true about the vanishing gradient problem?",
+      "question": "The 3D structure of a molecule ...",
       "options": [
-        "A vanishing gradient can be mitigated by decreasing the learning rate.",
-        "Repeated multiplication of gradients smaller than 1 leads to a vanishing gradient.",
-        "Repeated multiplication of gradients bigger than 1 leads to an vanishing gradient.",
-        "The choice of the activation functions plays a crucial role in the vanishing gradient problem."
+        "... is unambiguously determined by a molecular graph.",
+        "... is ambiguously determined by a molecular graph.",
+        "... is straightforward to predict if the sequence of atoms is known.",
+        "... determines the functionality to a high degree."
       ],
       "correctAnswer": [
-        "Repeated multiplication of gradients smaller than 1 leads to a vanishing gradient.",
-        "The choice of the activation functions plays a crucial role in the vanishing gradient problem."
+        "... determines the functionality to a high degree.",
+        "... is ambiguously determined by a molecular graph."
       ]
     },
     {
       "id": "6",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 2: Vanishing Gradients"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 1: Recap of HoAI 1"],
       "type": "MultipleChoice",
-      "question": "Which of the following statements is/are true about the ReLU activation function?",
+      "question": "A non-convex function ...",
       "options": [
-        "Its derivative is 0 for negative inputs.",
-        "Its derivative is -x for negative input x.",
-        "Its derivative is x for positive input x.",
-        "Its derivative is 1 for positive inputs."
+        "... is rare in deep learning.",
+        "... does not have an analytical solution (i.e., can be directly calculated) for computing its minimum.",
+        "... always has a non-closed-form solution for a minimization problem.",
+        "... has an analytical solution (i.e., can be directly calculated) for computing its minimum."
       ],
       "correctAnswer": [
-        "Its derivative is 0 for negative inputs.",
-        "Its derivative is 1 for positive inputs."
+        "... does not have an analytical solution (i.e., can be directly calculated) for computing its minimum.",
+        "... always has a non-closed-form solution for a minimization problem."
       ]
     },
     {
       "id": "7",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
+      "source": "Retry Exam",
+      "year": "2022",
       "topics": ["Unit 2: Vanishing Gradients"],
       "type": "MultipleChoice",
-      "question": "With respect to the vanishing gradient problem, which of the following statements are true regarding deep neural networks?",
+      "question": "Which of the following statements is/are true about the ReLU activation function?",
       "options": [
-        "The vanishing gradient problem will typically occur at the end of the network (towards the output layer).",
-        "The vanishing gradient problem has no correlation with the depth, as it just depends on the activation functions.",
-        "The vanishing gradient problem can get more severe when increasing the network depth.",
-        "The deeper the network, the more multiplications (chain rule) we have to perform in the backward pass."
+        "ReLUs can mitigate the vanishing gradient problem.",
+        "For positive inputs, ReLU equates to 1.",
+        "For negative inputs, ReLU equates to the identity function.",
+        "ReLU is computationally expensive."
       ],
-      "correctAnswer": [
-        "The deeper the network, the more multiplications (chain rule) we have to perform in the backward pass.",
-        "The vanishing gradient problem can get more severe when increasing the network depth."
-      ]
+      "correctAnswer": ["ReLUs can mitigate the vanishing gradient problem."]
     },
     {
       "id": "8",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 3: Recurrent Neural Networks"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 1: Recap of HoAI 1"],
       "type": "MultipleChoice",
-      "question": "The original CEC (constant error carousel) of an LSTM ...",
+      "question": "Which of the following statements is/are true about gradient descent?",
       "options": [
-        "... uses non-linear functions to modify the cell state.",
-        "... is responsible for going from the old cell state to the new cell state.",
-        "... is the cause of the vanishing gradient problem.",
-        "... is responsible for countering the vanishing gradient problem."
+        "It is an iterative method.",
+        "The initial starting value of a parameter must already be close to a minimum.",
+        "It will always converge to the global minimum.",
+        "The learning rate influences how much the value of a parameter changes."
       ],
       "correctAnswer": [
-        "... is responsible for countering the vanishing gradient problem.",
-        "... is responsible for going from the old cell state to the new cell state."
+        "It is an iterative method.",
+        "The learning rate influences how much the value of a parameter changes."
       ]
     },
     {
       "id": "9",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
+      "source": "Retry Exam",
+      "year": "2022",
       "topics": ["Unit 3: Recurrent Neural Networks"],
       "type": "MultipleChoice",
-      "question": "In classification, ...",
+      "question": "Back-propagation through time ...",
       "options": [
-        "... the target can be a number.",
-        "... we are dealing with an unsupervised machine learning scenario.",
-        "... there can only be two classes.",
-        "... the target value is a class label."
+        "... is the most common way to train an RNN.",
+        "... is the cause of vanishing gradients in RNNs.",
+        "... generates (potentially) very deep networks.",
+        "... is the cause of exploding gradients in RNNs."
       ],
       "correctAnswer": [
-        "... the target value is a class label.",
-        "... the target can be a number."
+        "... is the most common way to train an RNN.",
+        "... generates (potentially) very deep networks."
       ]
     },
     {
       "id": "10",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 4: Introduction to Reinforcement Learning"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 5: Drug Discovery"],
       "type": "MultipleChoice",
-      "question": "In Q-learning, an action must be taken to update the Q-values. Which of the following statements are true?",
+      "question": "Drug discovery ...",
       "options": [
-        "\"Exploration\" and \"Exploitation\" are strategies for choosing actions.",
-        "The action can be chosen based on the current highest Q-value.",
-        "Depending on the environment, choosing a suboptimal action might lead to Q-learning getting stuck.",
-        "The action can be chosen randomly."
+        "... always results in an approved drug.",
+        "... is about finding molecules that act on targets.",
+        "... can take many years.",
+        "... is an extremely expensive process."
       ],
       "correctAnswer": [
-        "The action can be chosen randomly.",
-        "The action can be chosen based on the current highest Q-value.",
-        "Depending on the environment, choosing a suboptimal action might lead to Q-learning getting stuck.",
-        "\"Exploration\" and \"Exploitation\" are strategies for choosing actions."
+        "... is about finding molecules that act on targets.",
+        "... is an extremely expensive process.",
+        "... can take many years."
       ]
     },
     {
       "id": "11",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 3: Recurrent Neural Networks"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 1: Recap of HoAI 1"],
       "type": "MultipleChoice",
-      "question": "Which of the following statements are true about the weights of an RNN?",
+      "question": "Which of the following statements is/are true about data augmentation?",
       "options": [
-        "The size of the weight matrix is independent of the sequence length.",
-        "For each timestep, a dedicated weight matrix is used.",
-        "For each timestep, the same (shared) weight matrix is used.",
-        "For sequences of different length, multiple (shared) weight matrices must be learned (one for each unique sequence length)."
+        "It is useful to artificially create more samples.",
+        "Not every augmentation technique is useful in every scenario.",
+        "It can potentially have a negative impact on the model performance.",
+        "It can increase data variation."
       ],
       "correctAnswer": [
-        "For each timestep, the same (shared) weight matrix is used.",
-        "The size of the weight matrix is independent of the sequence length."
+        "It is useful to artificially create more samples.",
+        "It can increase data variation.",
+        "Not every augmentation technique is useful in every scenario.",
+        "It can potentially have a negative impact on the model performance."
       ]
     },
     {
       "id": "12",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 1: Recap of HoAI 1"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 6: Language Modeling"],
       "type": "MultipleChoice",
-      "question": "Which of the following formulae are correct regarding the forward pass in a neural network layer, given some input vector x, weight matrix W, bias b and non-linear function f? You can assume that all vectors and matrices are in correct shape.",
+      "question": "In the context of language models, which statements is/are true about an embedding?",
       "options": [
-        "output = f(x * W) + b",
-        "output = x * f(W + b)",
-        "output = f(x * W + b)",
-        "output = f(x) * W + b"
+        "The decoder part of a language model is closely related to a word embedding.",
+        "An embedding contains the frequency of a word occurring in a text corpus.",
+        "Elements in a word embedding can potentially have a (strong) relationship/correlation with each other.",
+        "An embedding is a compact string representation of words."
       ],
-      "correctAnswer": ["output = f(x * W + b)"]
+      "correctAnswer": ["Elements in a word embedding can potentially have a (strong) relationship/correlation with each other."]
     },
     {
       "id": "13",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 3: Recurrent Neural Networks"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 6: Language Modeling"],
       "type": "MultipleChoice",
-      "question": "Which of the following statements are true about many-to-many RNN types?",
+      "question": "Which of the following statements is/are true about sequence data?",
       "options": [
-        "Given an input of length Tx = 1, the output/prediction length is Ty = 1.",
-        "Given an input of length Tx > 1, the output/prediction length is Ty = 1.",
-        "Given an input of length Tx, the output/prediction length can be unequal, i.e., Tx ≠ Ty.",
-        "Given an input of length Tx, the output/prediction length can be equal, i.e., Tx = Ty."
+        "Sequence data can only be used in supervised learning scenarios.",
+        "Every data can theoretically be represented as a sequence.",
+        "Typically, there is some sort of order in the data (time, position, etc.).",
+        "In terms of choosing machine learning models, it does not matter whether the data is a sequence or not."
       ],
       "correctAnswer": [
-        "Given an input of length Tx, the output/prediction length can be equal, i.e., Tx = Ty.",
-        "Given an input of length Tx, the output/prediction length can be unequal, i.e., Tx ≠ Ty."
+        "Every data can theoretically be represented as a sequence.",
+        "Typically, there is some sort of order in the data (time, position, etc.)."
       ]
     },
     {
       "id": "14",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 6: Language Modeling"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 4: Introduction to Reinforcement Learning"],
       "type": "MultipleChoice",
-      "question": "Assume a language modeling scenario where you have a dictionary size of 900, an embedding size of 250 and a hidden representation size of 200. Which of the following statements are true when considering a single model input (one word)?",
+      "question": "Consider the update function used during Q-learning: Q(sts ar) « (1 - a) * Q(Sy, a) ta * (r+ y * MaXa.s Q(Sts1> Atir)). Which of the following statements is/are true?",
       "options": [
-        "The decoder results in an output of size 900.",
-        "The model output are probabilities that sum up to 1.",
-        "The encoder and decoder matrices have equally many parameters.",
-        "The encoder matrix is identical to the decoder matrix."
+        "y is the learning rate.",
+        "@< a < 1 means that both the old Q-value as well as the new information will be used in the update step.",
+        "y = 1 means that the immediate reward is ignored.",
+        "a is the discount rate."
       ],
-      "correctAnswer": [
-        "The decoder results in an output of size 900.",
-        "The model output are probabilities that sum up to 1."
-      ]
+      "correctAnswer": ["@ < a < 1 means that both the old Q-value as well as the new information will be used in the update step."]
     },
     {
       "id": "15",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 2: Vanishing Gradients"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 1: Recap of HoAI 1"],
       "type": "MultipleChoice",
-      "question": "Which of the following activation functions are prone to the vanishing gradient problem?",
-      "options": ["Leaky ReLU", "Tanh", "ReLU", "Sigmoid"],
-      "correctAnswer": ["Sigmoid", "Tanh"]
+      "question": "Max-pooling ...",
+      "options": [
+        "... is common in convolutional neural networks.",
+        "... may decrease the spatial size of the data.",
+        "... is a form of subsampling.",
+        "... can reduce the computational load and memory requirements."
+      ],
+      "correctAnswer": [
+        "... is a form of subsampling.",
+        "... can reduce the computational load and memory requirements.",
+        "... may decrease the spatial size of the data.",
+        "... is common in convolutional neural networks."
+      ]
     },
     {
       "id": "16",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 4: Introduction to Reinforcement Learning"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 6: Language Modeling"],
       "type": "MultipleChoice",
-      "question": "Which of the following statements are true about the concept of an optimal policy?",
+      "question": "Assume a language modeling scenario where you have a dictionary size of 1500, an embedding size of 100 and a hidden representation size of 200. What is the output size of the language model when considering a single input (one word)?",
       "options": [
-        "Q-learning is an optimal policy.",
-        "There can be multiple optimal policies.",
-        "It maximizes the sum of rewards.",
-        "Continuously choosing the actions with the highest immediate reward will lead to an optimal policy."
+        "100 * 200 = 20000",
+        "200",
+        "100",
+        "1500"
       ],
-      "correctAnswer": [
-        "It maximizes the sum of rewards.",
-        "There can be multiple optimal policies."
-      ]
+      "correctAnswer": ["1500"]
     },
     {
       "id": "17",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 5: Drug Discovery"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 3: Recurrent Neural Networks"],
       "type": "MultipleChoice",
-      "question": "Which of the following statements are true about SMILES (Simplified Molecular Input Line Entry Specification)?",
+      "question": "Which of the following statements is/are true about the weights of an RNN?",
       "options": [
-        "A molecule can have different SMILES representations.",
-        "SIMLES is one of many molecular representations.",
-        "It is a string sequence representation of a molecule.",
-        "A molecule can only have exactly one SIMLES representation."
+        "For each timestep, a dedicated weight matrix is used.",
+        "For sequences of different length, multiple (shared) weight matrices must be learned (one for each unique sequence length).",
+        "The longer the sequence, the bigger the weight matrix.",
+        "For each timestep, the same (shared) weight matrix is used."
       ],
-      "correctAnswer": [
-        "It is a string sequence representation of a molecule.",
-        "A molecule can have different SMILES representations.",
-        "SIMLES is one of many molecular representations."
-      ]
+      "correctAnswer": ["For each timestep, the same (shared) weight matrix is used."]
     },
     {
       "id": "18",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 1: Recap of HoAI 1"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 6: Language Modeling"],
       "type": "MultipleChoice",
-      "question": "Which of the following statements are true about data augmentation?",
+      "question": "Which of the following statements is/are true about text generation with language models?",
       "options": [
-        "Some data augmentation techniques (e.g., noise) can be theoretically applied to all kinds of data.",
-        "Data augmentation might increase the robustness of a model.",
-        "Data augmentation is useful to remove duplicate samples.",
-        "Data augmentation reduces underfitting."
+        "Sampling can be performed on the predicted output probability distribution.",
+        "Given a starting word, always choosing the next word with the highest predicted probability will always yield the same generated text.",
+        "The same input will always lead to the same generated text.",
+        "The language model needs to be retrained if a different starting word is chosen."
       ],
       "correctAnswer": [
-        "Some data augmentation techniques (e.g., noise) can be theoretically applied to all kinds of data.",
-        "Data augmentation might increase the robustness of a model."
+        "Given a starting word, always choosing the next word with the highest predicted probability will always yield the same generated text.",
+        "Sampling can be performed on the predicted output probability distribution."
       ]
     },
     {
       "id": "19",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 6: Language Modeling"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 4: Introduction to Reinforcement Learning"],
       "type": "MultipleChoice",
-      "question": "Which of the following statements is/are true about language models?",
+      "question": "Assume a reinforcement learning scenario with a 2-dimensional location grid of size 4x4. Further assume that a robot (the agent) is placed randomly on this grid and must move to the target destination, which is also somewhere random on this grid. There are 4 possible movements: up, down, left and right (if the robot tries to go off the grid, it remains at the same location). Each action has a reward of -1 (negative reward). If the robot reaches the target, +10 is awarded (positive reward). Which of the following statements is/are true?",
       "options": [
-        "Language modeling is the task of predicting a word given a context.",
-        "Language modeling is the task of predicting a context given a word.",
-        "Language modeling is the task of predicting a previously unseen word.",
-        "Language modeling is the task of predicting the importance of words."
+        "There exists no policy that always gives an aggregated positive reward for every possible starting state.",
+        "The maximum number of steps of any policy is 4*4*4 = 64.",
+        "The maximum number of steps of an optimal policy is 6.",
+        "The minimum number of steps of an optimal policy is 0."
       ],
-      "correctAnswer": ["Language modeling is the task of predicting a word given a context."]
+      "correctAnswer": [
+        "The maximum number of steps of an optimal policy is 6.",
+        "The minimum number of steps of an optimal policy is 0."
+      ]
     },
     {
       "id": "20",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 1: Recap of HoAI 1"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 4: Introduction to Reinforcement Learning"],
       "type": "MultipleChoice",
-      "question": "A non-convex function ...",
+      "question": "In a Markov decision process, ...",
       "options": [
-        "... typically does not have a closed-form solution.",
-        "... is common in deep learning.",
-        "... often requires iterative methods when calculating the minimum.",
-        "... must always be solved analytically when calculating the minimum."
+        "... rewards can be 0.",
+        "... the next action depends on all previous states.",
+        "... rewards can be negative.",
+        "... the next state depends on the agent's action and all previous states."
       ],
       "correctAnswer": [
-        "... is common in deep learning.",
-        "... typically does not have a closed-form solution.",
-        "... often requires iterative methods when calculating the minimum."
+        "... rewards can be negative.",
+        "... rewards can be 0."
       ]
     },
     {
       "id": "21",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 3: Recurrent Neural Networks"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 6: Language Modeling"],
       "type": "MultipleChoice",
-      "question": "Back-propagation through time ...",
+      "question": "Assume a language modeling scenario where you have a dictionary size of 1000, an embedding size of 150 and a hidden representation size of 150. Which of the following statements is/are true when considering a single model input (one word)?",
       "options": [
-        "... generates (potentially) very deep neworks.",
-        "... is the cause of vanishing gradients in RNNs.",
-        "... mitigates the vanishing gradients problem in unrolled RNNs.",
-        "... is commonly used to train an RNN."
+        "The model output are probabilities for each of the 1000 possible words.",
+        "The maximum input sequence length is 150.",
+        "The encoder and decoder matrices have equally many parameters.",
+        "The word embedding matrix is identical to the encoder matrix."
       ],
       "correctAnswer": [
-        "... is commonly used to train an RNN.",
-        "... generates (potentially) very deep neworks."
+        "The word embedding matrix is identical to the encoder matrix.",
+        "The encoder and decoder matrices have equally many parameters.",
+        "The model output are probabilities for each of the 1000 possible words."
       ]
     },
     {
       "id": "22",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
+      "source": "Retry Exam",
+      "year": "2022",
       "topics": ["Unit 1: Recap of HoAI 1"],
       "type": "MultipleChoice",
-      "question": "Which of the following are typical activation functions in neural networks?",
-      "options": ["Leaky ReLU", "Sigmoid", "ReLU", "Tanh"],
-      "correctAnswer": ["Sigmoid", "ReLU", "Tanh", "Leaky ReLU"]
+      "question": "In classification, ...",
+      "options": [
+        "... the target value is a class label.",
+        "... the target cannot be a number.",
+        "... we are dealing with an unsupervised machine learning scenario.",
+        "... we are dealing with a supervised machine learning scenario."
+      ],
+      "correctAnswer": [
+        "... the target value is a class label.",
+        "... we are dealing with a supervised machine learning scenario."
+      ]
     },
     {
       "id": "23",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 3: Recurrent Neural Networks"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 2: Vanishing Gradients"],
       "type": "MultipleChoice",
-      "question": "Which of the following statements are true about recurrent neural networks?",
+      "question": "With respect to the vanishing gradient problem, which of the following statements is/are true regarding deep neural networks?",
       "options": [
-        "They are suitable for processing sequences of variable dimensionality (i.e. number of features).",
-        "They are suitable for processing sequences of variable length.",
-        "They are the same as regular feed-forward neural networks in case the sequence length is fixed.",
-        "They are suitable for processing sequences of fixed length."
+        "The vanishing gradient problem is independent of the network depth.",
+        "By increasing the network depth, the vanishing gradient problem can be mitigated.",
+        "Deep networks will always suffer from the vanishing gradient problem.",
+        "The deeper the network, the more multiplications (chain rule) we have to perform in the backward pass."
       ],
       "correctAnswer": [
-        "They are suitable for processing sequences of variable length.",
-        "They are suitable for processing sequences of fixed length."
+        "The deeper the network, the more multiplications (chain rule) we have to perform in the backward pass."
       ]
     },
     {
       "id": "24",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
+      "source": "Retry Exam",
+      "year": "2022",
       "topics": ["Unit 5: Drug Discovery"],
       "type": "MultipleChoice",
-      "question": "Which of the following statements are true about virtual screening (VS)?",
+      "question": "Which of the following statements is/are true about SMILES (Simplified Molecular Input Line Entry Specification)?",
       "options": [
-        "In VS, a trained neural network predicts the 3D structure of an amino-acid sequence.",
-        "In VS, a trained neural network predicts whether a molecule in the data base is likely to bind/react with the target of interest.",
-        "In VS, a trained neural network virtually searches through the whole chemical universe in order to find molecules with a specific bio-activity.",
-        "In VS, a trained neural network creates new molecules with the specified bio-activity."
+        "It is a sequence representation of a molecule.",
+        "A molecular graph can be transformed into a SMILES string and the other way around.",
+        "A molecule can have different SMILES strings.",
+        "A molecule can only have exactly one SMILES string."
       ],
       "correctAnswer": [
-        "In VS, a trained neural network predicts whether a molecule in the data base is likely to bind/react with the target of interest."
+        "It is a sequence representation of a molecule.",
+        "A molecule can have different SMILES strings.",
+        "A molecular graph can be transformed into a SMILES string and the other way around."
       ]
     },
     {
       "id": "25",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 4: Introduction to Reinforcement Learning"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 2: Vanishing Gradients"],
       "type": "MultipleChoice",
-      "question": "Consider the update function used during Q-learning: Q(s, a) ← (1 - α) * Q(s, a) + α * (r + γ * max Q(s', a')). Which of the following statements are true?",
+      "question": "Which of the following statements is/are true about the vanishing gradient problem?",
       "options": [
-        "r is the expected long-term reward when taking action a in state s.",
-        "α is the learning rate.",
-        "α = 0 means that only new information is used in the update.",
-        "α = 1 means that only new information is used in the update."
+        "Repeated multiplication of gradients bigger than 1 leads to an vanishing gradient.",
+        "A vanishing gradient can be avoided by decreasing the learning rate.",
+        "Repeated multiplication of gradients smaller than 1 leads to a vanishing gradient.",
+        "A vanishing gradient can be avoided by increasing the learning rate."
       ],
-      "correctAnswer": ["α is the learning rate.", "α = 1 means that only new information is used in the update."]
+      "correctAnswer": [
+        "Repeated multiplication of gradients smaller than 1 leads to a vanishing gradient."
+      ]
     },
     {
       "id": "26",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
+      "source": "Retry Exam",
+      "year": "2022",
       "topics": ["Unit 5: Drug Discovery"],
       "type": "MultipleChoice",
-      "question": "A drug is ...",
+      "question": "Which of the following statements is/are true about QSAR (Quantitative Structure-Activity Relationship)?",
       "options": [
-        "... a chemical substance which should ideally suppress all biological effects in a living organism.",
-        "... equivalent to a nutrient or an essential dietary ingredient (they are all synonymous).",
-        "... a chemical substance which produces a biological effect in a living organism when administered.",
-        "... a type of non-linear activation function for neural networks in life sciences."
+        "The hypothesis is that similar molecular structures have similar activities.",
+        "The molecule structure is determined by the bioactivity.",
+        "The hypothesis is that similar activities have similar molecular structures.",
+        "The bioactivity is determined by the molecule structure."
       ],
-      "correctAnswer": ["... a chemical substance which produces a biological effect in a living organism when administered."]
+      "correctAnswer": [
+        "The bioactivity is determined by the molecule structure.",
+        "The hypothesis is that similar molecular structures have similar activities."
+      ]
     },
     {
       "id": "27",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
+      "source": "Retry Exam",
+      "year": "2022",
       "topics": ["Unit 1: Recap of HoAI 1"],
       "type": "MultipleChoice",
-      "question": "In convolutional neural networks, which of the following statements are true about weight sharing?",
+      "question": "In the forward pass of a neural network, the input vector is ...",
       "options": [
-        "It is about applying the kernel to all image positions while keeping the weights the same.",
-        "It is about applying the kernel to all image positions while continuously updating the weights.",
-        "It is about applying the kernel to one specific image position while continuously updating the weights.",
-        "It is about applying the kernel to one specific image position while keeping the weights the same."
+        "... passed through an element-wise non-linearity, added to bias weights and multiplied by a weight matrix.",
+        "... passed through an element-wise non-linearity, multiplied by a weight matrix and added to bias weights.",
+        "... added to bias weights, multiplied by a weight matrix and passed through an element-wise non-linearity.",
+        "... multiplied by a weight matrix, added to bias weights and passed through an element-wise non-linearity."
       ],
-      "correctAnswer": ["It is about applying the kernel to all image positions while keeping the weights the same."]
+      "correctAnswer": ["... multiplied by a weight matrix, added to bias weights and passed through an element-wise non-linearity."]
     },
     {
       "id": "28",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
-      "topics": ["Unit 4: Introduction to Reinforcement Learning"],
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 1: Recap of HoAI 1"],
       "type": "MultipleChoice",
-      "question": "Which of the following statements is/are true about Q-learning?",
+      "question": "In convolutional neural networks, which of the following statements is/are true about weight sharing?",
       "options": [
-        "Q-learning is one possible implementation of reinforcement learning.",
-        "Q-learning quickly becomes computationally infeasible for larger MDPs (Markov decision processes).",
-        "Q-learning can be applied to any MDP (Markov decision process).",
-        "Deep Q-learning is about approximating the Q-value function."
+        "It is about applying the kernel to one specific image position while keeping the weights the same.",
+        "It is about applying the kernel to one specific image position while continuously updating the weights.",
+        "It is about applying the kernel to all image positions while keeping the weights the same.",
+        "It is about applying the kernel to all image positions while continuously updating the weights."
       ],
       "correctAnswer": [
-        "Q-learning can be applied to any MDP (Markov decision process).",
-        "Q-learning is one possible implementation of reinforcement learning.",
-        "Q-learning quickly becomes computationally infeasible for larger MDPs (Markov decision processes).",
-        "Deep Q-learning is about approximating the Q-value function."
+        "It is about applying the kernel to all image positions while keeping the weights the same."
       ]
     },
     {
       "id": "29",
       "courseId": "qKGyw05W1UXklk4P9m6J",
-      "source": "Exam",
-      "year": "2023",
+      "source": "Retry Exam",
+      "year": "2022",
       "topics": ["Unit 1: Recap of HoAI 1"],
       "type": "MultipleChoice",
-      "question": "Which of the following statements are true regarding a loss function?",
+      "question": "The convolution of a 8x8 image with 1 feature map (channel) with 2 kernels of size 4x4 produces ...",
       "options": [
-        "It measures how close the prediction is to the true target.",
-        "Given two losses lossA and lossB obtained with two different functions, then the one function which yielded the lower loss is the better function.",
-        "Typically, the lower the loss, the better the prediction.",
-        "Typically, the higher the loss, the better the prediction."
+        "an output with 2 feature maps.",
+        "an output with 4x4 = 16 feature maps.",
+        "an output with 1 feature map.",
+        "an output with (8x8)/(4x4) = 4 feature maps."
+      ],
+      "correctAnswer": ["an output with 2 feature maps."]
+    },
+    {
+      "id": "30",
+      "courseId": "qKGyw05W1UXklk4P9m6J",
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 5: Drug Discovery"],
+      "type": "MultipleChoice",
+      "question": "Which of the following statements is/are true about virtual screening (VS)?",
+      "options": [
+        "In VS, a trained neural network virtually searches through the whole chemical universe in order to find molecules with a specific bio-activity.",
+        "In VS, a trained neural network predicts the most relevant target molecule for a drug against a specific disease.",
+        "In VS, a trained neural network predicts the most likely conformation of large bio-molecules like proteins.",
+        "In VS, a trained neural network predicts whether a molecule in the data base is likely to bind/react with the target of interest."
+      ],
+      "correctAnswer": ["In VS, a trained neural network predicts whether a molecule in the data base is likely to bind/react with the target of interest."]
+    },
+    {
+      "id": "31",
+      "courseId": "qKGyw05W1UXklk4P9m6J",
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 1: Recap of HoAI 1"],
+      "type": "MultipleChoice",
+      "question": "You are given the derivative of the logistic function o' (x) and the following computation: y = o'(10@) * o'(10). Which of the following statements is/are correct?",
+      "options": [
+        "y is very close to 10000.",
+        "y is very close to 0.",
+        "y is in the range (0, 1/4].",
+        "y is very close to 1/4."
       ],
       "correctAnswer": [
-        "It measures how close the prediction is to the true target.",
-        "Typically, the lower the loss, the better the prediction."
+        "y is in the range (0, 1/4].",
+        "y is very close to 0."
+      ]
+    },
+    {
+      "id": "32",
+      "courseId": "qKGyw05W1UXklk4P9m6J",
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 1: Recap of HoAI 1"],
+      "type": "MultipleChoice",
+      "question": "Which of the following statements is/are true about tabular data?",
+      "options": [
+        "Feature vectors can directly be obtained from the table.",
+        "Tabular data can be used in supervised as well as unsupervised learning.",
+        "It consists of samples that contain information on a variable/dynamic set of properties/features.",
+        "Each column corresponds to an individual sample."
+      ],
+      "correctAnswer": [
+        "Tabular data can be used in supervised as well as unsupervised learning.",
+        "Feature vectors can directly be obtained from the table."
+      ]
+    },
+    {
+      "id": "33",
+      "courseId": "qKGyw05W1UXklk4P9m6J",
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 2: Vanishing Gradients"],
+      "type": "MultipleChoice",
+      "question": "The CEC (constant error carousel) of an LSTM ...",
+      "options": [
+        "... is influenced by the introduction of the forget gate.",
+        "... is responsible for going from the old cell state to the new cell state.",
+        "... is an optional part.",
+        "... can mitigate the vanishing gradient problem."
+      ],
+      "correctAnswer": [
+        "... can mitigate the vanishing gradient problem.",
+        "... is influenced by the introduction of the forget gate.",
+        "... is responsible for going from the old cell state to the new cell state."
+      ]
+    },
+    {
+      "id": "34",
+      "courseId": "qKGyw05W1UXklk4P9m6J",
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 6: Language Modeling"],
+      "type": "MultipleChoice",
+      "question": "Which of the following statements is/are true about sequence data input and standard, feed-forward neural networks?",
+      "options": [
+        "Sequences with variable lengths must be preprocessed before they can be an input to a feed-forward neural network.",
+        "Sequence data cannot be an input to a feed-forward neural network.",
+        "The relation of elements in the sequence is lost.",
+        "If the sequence length is equal, a feed-forward neural network behaves the same as a recurrent neural network."
+      ],
+      "correctAnswer": [
+        "The relation of elements in the sequence is lost.",
+        "Sequences with variable lengths must be preprocessed before they can be an input to a feed-forward neural network."
+      ]
+    },
+    {
+      "id": "35",
+      "courseId": "qKGyw05W1UXklk4P9m6J",
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 4: Introduction to Reinforcement Learning"],
+      "type": "MultipleChoice",
+      "question": "Which of the following statements is/are true about the concept of an optimal policy?",
+      "options": [
+        "High immediate rewards indicate an optimal policy.",
+        "It maximizes the sum of rewards.",
+        "There exists exactly one optimal policy.",
+        "The optimal policy may be obtained via Q-learning."
+      ],
+      "correctAnswer": [
+        "It maximizes the sum of rewards.",
+        "The optimal policy may be obtained via Q-learning."
+      ]
+    },
+    {
+      "id": "36",
+      "courseId": "qKGyw05W1UXklk4P9m6J",
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 4: Introduction to Reinforcement Learning"],
+      "type": "MultipleChoice",
+      "question": "Which of the following statements is/are true about (deep) Q-learning?",
+      "options": [
+        "Deep Q-learning is about approximating the Q-value function.",
+        "Q-learning can only be applied to small MDPs (Markov decision processes).",
+        "Q-learning is an implementation of reinforcement learning.",
+        "Deep Q-learning is often necessary for larger MDPs (Markov decision processes)."
+      ],
+      "correctAnswer": [
+        "Q-learning is an implementation of reinforcement learning.",
+        "Deep Q-learning is often necessary for larger MDPs (Markov decision processes).",
+        "Deep Q-learning is about approximating the Q-value function."
+      ]
+    },
+    {
+      "id": "37",
+      "courseId": "qKGyw05W1UXklk4P9m6J",
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 3: Recurrent Neural Networks"],
+      "type": "MultipleChoice",
+      "question": "Which of the following statements is/are true about gating/gates in an LSTM?",
+      "options": [
+        "Gating is the central part of the CEC.",
+        "Gates only depend on the current input.",
+        "Gating is used to control what to read/write/forget in memory.",
+        "Typically, sigmoid is used as gate function."
+      ],
+      "correctAnswer": [
+        "Gating is used to control what to read/write/forget in memory.",
+        "Typically, sigmoid is used as gate function."
+      ]
+    },
+    {
+      "id": "38",
+      "courseId": "qKGyw05W1UXklk4P9m6J",
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 6: Language Modeling"],
+      "type": "MultipleChoice",
+      "question": "Which of the following statements is/are true about language models?",
+      "options": [
+        "During training of an RNN language model, at each timestep, the encoder provides the probability distribution of the next word, where the probability distribution is defined over all the words in the dictionary.",
+        "Language modeling is the task of predicting a context given a word.",
+        "During training of an RNN language model, at each timestep, the decoder provides the probability distribution of the next word, where the probability distribution is defined over all the words in the dictionary.",
+        "Language modeling is the task of predicting a word given a context."
+      ],
+      "correctAnswer": [
+        "Language modeling is the task of predicting a word given a context.",
+        "During training of an RNN language model, at each timestep, the decoder provides the probability distribution of the next word, where the probability distribution is defined over all the words in the dictionary."
+      ]
+    },
+    {
+      "id": "39",
+      "courseId": "qKGyw05W1UXklk4P9m6J",
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 3: Recurrent Neural Networks"],
+      "type": "MultipleChoice",
+      "question": "Which of the following statements is/are true about recurrent neural networks?",
+      "options": [
+        "They are suitable for processing sequences of fixed length.",
+        "They are suitable for processing sequences of variable length.",
+        "They incorporate information from the current timestep/position of a sequence.",
+        "They incorporate information from previous timesteps/positions of a sequence."
+      ],
+      "correctAnswer": [
+        "They are suitable for processing sequences of variable length.",
+        "They incorporate information from the current timestep/position of a sequence.",
+        "They incorporate information from previous timesteps/positions of a sequence.",
+        "They are suitable for processing sequences of fixed length."
+      ]
+    },
+    {
+      "id": "40",
+      "courseId": "qKGyw05W1UXklk4P9m6J",
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 3: Recurrent Neural Networks"],
+      "type": "MultipleChoice",
+      "question": "Which of the following statements is/are true about the one-to-many RNN type?",
+      "options": [
+        "Given an input of length Tx > 1, the output/prediction length is Ty = 1.",
+        "Given an input of length Tx > 1, the output/prediction length is Ty > 1.",
+        "Given an input of length Tx = 1, the output/prediction length is Ty > 1.",
+        "Given an input of length Tx = 1, the output/prediction length is Ty = 1."
+      ],
+      "correctAnswer": ["Given an input of length Tx = 1, the output/prediction length is Ty > 1."]
+    },
+    {
+      "id": "41",
+      "courseId": "qKGyw05W1UXklk4P9m6J",
+      "source": "Retry Exam",
+      "year": "2022",
+      "topics": ["Unit 4: Introduction to Reinforcement Learning"],
+      "type": "MultipleChoice",
+      "question": "Which of the following statements is/are true about a policy in reinforcement learning?",
+      "options": [
+        "A policy defines the agent's behavior.",
+        "The policy is the same as the value function.",
+        "An optimal policy maximizes the expected reward.",
+        "The policy is independent of the state."
+      ],
+      "correctAnswer": [
+        "A policy defines the agent's behavior.",
+        "An optimal policy maximizes the expected reward."
       ]
     }
   ]
