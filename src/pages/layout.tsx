@@ -27,9 +27,9 @@ export function AppLayout() {
             <h3>JKU Exam Simulator</h3>
             <Group ml="xl" gap={10} visibleFrom="sm">
               <Link to="/">Home</Link>
-              <Link to="/">About</Link>
-              <Link to="/">Request an Exam</Link>
-              <Link to="/">Request a Feature</Link>
+              <Link to="/about">About</Link>
+              <Link to="/exam-request">Request an Exam</Link>
+              <Link to="/feature-request">Request a Feature</Link>
             </Group>
           </Group>
         </Group>
@@ -45,9 +45,9 @@ export function AppLayout() {
             }}
           >
             <Link to="/">Home</Link>
-            <Link to="/">About</Link>
-            <Link to="/">Request an Exam</Link>
-            <Link to="/">Request a Feature</Link>
+            <Link to="/about">About</Link>
+            <Link to="/exam-request">Request an Exam</Link>
+            <Link to="/feature-request">Request a Feature</Link>
           </div>
         </AppShell.Section>
         <AppShell.Section>Made with ❤️</AppShell.Section>
