@@ -6,6 +6,7 @@ import { Pill } from "@mantine/core";
 import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Confetti from "react-confetti";
+import "./style.css";
 
 const TestSimulator = () => {
   const {
@@ -57,53 +58,55 @@ const TestSimulator = () => {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-        height: "100%",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          borderBottom: "1px solid black",
-        }}
-      >
-        <Progress value={progress} />
-        <h3>
-          {currentQuestion.topics.map((topic) => (
-            <Pill>{topic}, </Pill>
-          ))}{" "}
-          | {currentQuestion.source} {currentQuestion.year} | {correctAnswers}{" "}
-          correct answers
-        </h3>
-      </div>
-      <div
-        style={{
-          overflow: "auto",
-        }}
-      >
+    <>
+      <div className="test-simulator">
+        <div
+          style={{
+            borderBottom: "1px solid black",
+          }}
+
+          className="inside"
+        >
+          <Progress value={progress} />
+          <h3>
+            {currentQuestion.topics.map((topic) => (
+              <Pill>{topic}, </Pill>
+            ))}{" "}
+            | {currentQuestion.source} {currentQuestion.year} | {correctAnswers}{" "}
+            correct answers
+          </h3>
+        </div>
+        <div
+          style={{
+            overflow: "auto",
+          }}
+
+          className="inside"
+        >
+          <div
+            style={{
+              overflow: "scroll",
+              maxWidth: "100vw",
+              maxHeight: "30vh",
+              borderBottom: "1px solid black",
+            }}
+            dangerouslySetInnerHTML={{ __html: currentQuestion.question }}
+          />
+        </div>
         <div
           style={{
             overflow: "scroll",
             maxWidth: "100vw",
-            maxHeight: "30vh",
-            borderBottom: "1px solid black",
+            maxHeight: "50vh",
           }}
-          dangerouslySetInnerHTML={{ __html: currentQuestion.question }}
-        />
-      </div>
-      <div
-        style={{
-          overflow: "scroll",
-          maxWidth: "100vw",
-          maxHeight: "50vh",
-        }}
-      >
-        {answerType}
-      </div>
+
+          className="inside"
+        >
+          {answerType}
+        </div>
+        {isCorrect && (
+          <Confetti width={dimensions.width} height={dimensions.height} />
+        )}
       <div
         style={{
           position: "absolute",
@@ -136,10 +139,8 @@ const TestSimulator = () => {
           Next Question
         </Button>
       </div>
-      {isCorrect && (
-        <Confetti width={dimensions.width} height={dimensions.height} />
-      )}
-    </div>
+      </div>
+    </>
   );
 };
 
