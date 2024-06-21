@@ -19,6 +19,12 @@ interface TestStore {
   questions: Question[];
   currentQuestionIndex: number;
   currentQuestion: Question;
+  currentAnswer: string[];
+  setCurrentAnswer: (answer: string[]) => void;
+  checked: boolean;
+  isCorrect: boolean | null;
+  setChecked: (checked: boolean) => void;
+  setIsCorrect: (isCorrect: boolean | null) => void;
   correctAnswers: number;
   incorrectAnswers: number;
   checkAnswer: (answer: string[]) => boolean;
@@ -59,6 +65,12 @@ const useTestStore = create<TestStore>((set) => ({
     })),
   setQuestions: (questions: Question[]) =>
     set({ questions, currentQuestion: questions[0] }),
+  checked: false,
+  isCorrect: null,
+  setChecked: (checked) => set({ checked }),
+  setIsCorrect: (isCorrect) => set({ isCorrect }),
+  currentAnswer: [],
+  setCurrentAnswer: (answer) => set({ currentAnswer: answer }),
 }));
 
 export default useTestStore;

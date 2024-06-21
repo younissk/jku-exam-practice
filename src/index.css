@@ -66,3 +66,42 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.craft-exam {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.from-preset {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+@media (min-width: 768px) {
+  .homepage {
+    flex-direction: row;
+    width: 95vw;
+    max-height: 90vh;
+  }
+
+  .from-preset {
+    flex: 1;
+    overflow: scroll;
+  }
+
+  .craft-exam {
+    flex: 1;
+    border-right: 1px solid black;
+    padding-right: 1rem;
+  }
+}

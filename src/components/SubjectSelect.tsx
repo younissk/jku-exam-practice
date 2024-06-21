@@ -4,7 +4,7 @@ import useSearchStore from '../stores/useSearchStore';
 
 const groceries = [
   { name: "Python 2", id: "qaGEDqLkQZwb34UTsHOf" },
-  { name: "Hands on AI 2", id: "anotherID" }
+  { name: "Hands on AI 2", id: "qKGyw05W1UXklk4P9m6J" }
 ];
 
 function SubjectSelect() {
