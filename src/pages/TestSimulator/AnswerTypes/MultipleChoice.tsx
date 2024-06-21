@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
 import useTestStore from "../../../stores/useTestStore";
-import { Button, Paper } from "@mantine/core";
+import { Paper } from "@mantine/core";
 
 export default function MultipleChoice() {
-  const { currentQuestion, nextQuestion, checkAnswer, currentAnswer, setCurrentAnswer, checked, isCorrect } = useTestStore();
+  const { currentQuestion, currentAnswer, setCurrentAnswer, checked } = useTestStore();
 
   if (!currentQuestion.options) {
     return null;

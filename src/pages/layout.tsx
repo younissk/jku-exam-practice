@@ -3,7 +3,6 @@ import {
   Burger,
   Group,
   ScrollArea,
-  UnstyledButton,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Link, Outlet } from "react-router-dom";
