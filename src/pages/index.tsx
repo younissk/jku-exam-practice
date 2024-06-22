@@ -7,10 +7,11 @@ import YearSelect from "../components/YearSelect";
 import useSearchStore from "../stores/useSearchStore";
 import useTestStore from "../stores/useTestStore";
 import { useNavigate } from "react-router-dom";
-import "../index.css"
+import "../index.css";
+import TopicSelect from "../components/TopicSelect";
 
 const IndexPage = () => {
-  const { source, year, subject } = useSearchStore();
+  const { source, year, subject, topic } = useSearchStore();
   const { setQuestions, resetEverything } = useTestStore();
   const navigate = useNavigate();
 
@@ -37,10 +38,18 @@ const IndexPage = () => {
         {data && (
           <div>
             <p>{data.length} questions found</p>
+            <TopicSelect questions={data} />
             <Button
               onClick={() => {
                 resetEverything();
-                setQuestions(data);
+                if (topic) {
+                  const filteredQuestions = data.filter((question) =>
+                    question.topics.includes(topic)
+                  );
+                  setQuestions(filteredQuestions);
+                } else {
+                  setQuestions(data);
+                }
                 navigate("/test-simulation");
               }}
             >

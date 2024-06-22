@@ -3,7 +3,7 @@ import useTestStore from "../../stores/useTestStore";
 import MultipleChoice from "./AnswerTypes/MultipleChoice";
 import { QuestionType } from "../../../data/interfaces/Test";
 import { Pill } from "@mantine/core";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Confetti from "react-confetti";
 import "./style.css";
@@ -45,6 +45,8 @@ const TestSimulator = () => {
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
   const questionType = currentQuestion.type;
+
+  const navigate = useNavigate();
 
   let answerType;
 
@@ -90,6 +92,7 @@ const TestSimulator = () => {
               maxHeight: "30vh",
               borderBottom: "1px solid black",
             }}
+            className="inside"
             dangerouslySetInnerHTML={{ __html: currentQuestion.question }}
           />
         </div>
@@ -133,7 +136,11 @@ const TestSimulator = () => {
           onClick={() => {
             setChecked(false);
             setIsCorrect(null);
-            nextQuestion();
+            if (currentQuestionIndex === questions.length - 1) {
+              return navigate("/results");
+            } else {
+              nextQuestion();
+            }
           }}
         >
           Next Question

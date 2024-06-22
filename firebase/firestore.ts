@@ -16,7 +16,7 @@ export const getAllQuestions = async () => {
 export const getFilteredQuestions = async (
   subject?: string,
   year?: string,
-  source?: string
+  source?: string,
 ) => {
   const questionsRef = collection(db, "questions");
   let q: Query = questionsRef;
