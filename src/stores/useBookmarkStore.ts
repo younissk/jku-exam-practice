@@ -27,7 +27,7 @@ interface BookmarkStore {
     isBookmarked: (bookmark: Question) => Promise<boolean>;
 }
 
-const useBookmarkStore = create<BookmarkStore>((set, get) => ({
+const useBookmarkStore = create<BookmarkStore>((set) => ({
     bookmarks: [],
     addBookmark: async (bookmark) => {
         try {
