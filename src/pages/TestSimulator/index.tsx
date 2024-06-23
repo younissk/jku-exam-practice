@@ -7,6 +7,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Confetti from "react-confetti";
 import "./style.css";
+import BookmarkButton from "../../components/BookmarkButton";
+import useBookmarkStore from "../../stores/useBookmarkStore";
 
 const TestSimulator = () => {
   const {
@@ -27,6 +29,22 @@ const TestSimulator = () => {
     width: window.innerWidth,
     height: window.innerHeight,
   });
+
+  const {
+    addBookmark,
+    removeBookmark,
+    isBookmarked: isBookmarkedInDB,
+  } = useBookmarkStore();
+
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+  useEffect(() => {
+    if (questions) {
+      isBookmarkedInDB(currentQuestion).then((result) => {
+        setIsBookmarked(result);
+      });
+    }
+  }, [currentQuestion]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -66,7 +84,6 @@ const TestSimulator = () => {
           style={{
             borderBottom: "1px solid black",
           }}
-
           className="inside"
         >
           <Progress value={progress} />
@@ -76,13 +93,24 @@ const TestSimulator = () => {
             ))}{" "}
             | {currentQuestion.source} {currentQuestion.year} | {correctAnswers}{" "}
             correct answers
+            <BookmarkButton
+              isBookmarked={isBookmarked}
+              onClick={() => {
+                if (isBookmarked) {
+                  removeBookmark(currentQuestion);
+                  setIsBookmarked(false);
+                } else {
+                  addBookmark(currentQuestion);
+                  setIsBookmarked(true);
+                }
+              }}
+            />
           </h3>
         </div>
         <div
           style={{
             overflow: "auto",
           }}
-
           className="inside"
         >
           <div
@@ -100,9 +128,8 @@ const TestSimulator = () => {
           style={{
             overflow: "scroll",
             maxWidth: "100vw",
-            maxHeight: "50vh",
+            maxHeight: "40vh",
           }}
-
           className="inside"
         >
           {answerType}
@@ -110,42 +137,46 @@ const TestSimulator = () => {
         {isCorrect && (
           <Confetti width={dimensions.width} height={dimensions.height} />
         )}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-evenly",
-          padding: 10,
-          borderTop: "1px solid black",
-        }}
-      >
-        <Button
-          onClick={() => {
-            setChecked(true);
-            setIsCorrect(checkAnswer(currentAnswer));
-          }}
-          disabled={checked}
-        >
-          Check Answer
-        </Button>
-        <Button
-          onClick={() => {
-            setChecked(false);
-            setIsCorrect(null);
-            if (currentQuestionIndex === questions.length - 1) {
-              return navigate("/results");
-            } else {
-              nextQuestion();
-            }
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+            padding: 10,
+            borderTop: "1px solid black",
           }}
         >
-          Next Question
-        </Button>
-      </div>
+          <Button
+            onClick={() => {
+              setChecked(true);
+              setIsCorrect(checkAnswer(currentAnswer));
+            }}
+            disabled={checked}
+          >
+            Check Answer
+          </Button>
+          <Button
+            disabled={!checked}
+            onClick={async () => {
+              setChecked(false);
+              setIsCorrect(null);
+              if (currentQuestionIndex === questions.length - 1) {
+                return navigate("/results");
+              } else {
+                await setIsBookmarked(
+                  await isBookmarkedInDB(questions[currentQuestionIndex + 1])
+                );
+                await nextQuestion();
+              }
+            }}
+          >
+            Next Question
+          </Button>
+        </div>
       </div>
     </>
   );
