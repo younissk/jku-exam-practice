@@ -21,7 +21,11 @@ const BookmarkRedirect = () => {
             console.log("Fetched bookmarks: ", data);
             await resetEverything();
             await setQuestions(data);
-            navigate("/test-simulation");
+            if (data.length === 0) {
+                navigate("/");
+            } else {
+                navigate("/test-simulation");
+            }
             
         },
         onError: (error) => {
