@@ -1,13 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
+import IndexPage from "../pages";
+import AboutPage from "../pages/AboutPage";
 import { AppLayout } from "../pages/layout";
+import Login from "../pages/LoginPage";
+import Results from "../pages/Results";
 import SubjectPage from "../pages/SubjectPage";
 import TestPage from "../pages/TestPage";
-import IndexPage from "../pages";
 import TestSimulator from "../pages/TestSimulator";
-import AboutPage from "../pages/AboutPage";
-import ExamRedirect from "../pages/TestSimulator/ExamRedirect";
-import Results from "../pages/Results";
 import BookmarkRedirect from "../pages/TestSimulator/BookmarkRedirect";
+import ExamRedirect from "../pages/TestSimulator/ExamRedirect";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <AboutPage />,
+      },
+      {
+        path: "login",
+        element: <Login />,
       },
       {
         path: "exam-request",
@@ -68,7 +73,7 @@ const router = createBrowserRouter([
       {
         path: "bookmarks",
         element: <BookmarkRedirect />,
-      }
+      },
     ],
   },
 ]);

@@ -1,15 +1,16 @@
-import useTestStore from "../../../stores/useTestStore";
 import { Paper } from "@mantine/core";
+import useTestStore from "../../../stores/useTestStore";
 
 export default function MultipleChoice() {
-  const { currentQuestion, currentAnswer, setCurrentAnswer, checked } = useTestStore();
+  const { currentQuestion, currentAnswer, setCurrentAnswer, checked } =
+    useTestStore();
 
   if (!currentQuestion.options) {
     return null;
   }
 
   return (
-    <div style={{ position: "relative", }}>
+    <div style={{ position: "relative" }}>
       {currentQuestion.options.map((option, index) => {
         let backgroundColor = "white";
         if (checked) {
@@ -43,9 +44,7 @@ export default function MultipleChoice() {
             onClick={() => {
               if (!checked) {
                 if (currentAnswer.includes(option)) {
-                  setCurrentAnswer(
-                    currentAnswer.filter((o) => o !== option)
-                  );
+                  setCurrentAnswer(currentAnswer.filter((o) => o !== option));
                 } else {
                   setCurrentAnswer([...currentAnswer, option]);
                 }
