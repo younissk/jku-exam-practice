@@ -7,7 +7,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import "./index.css";
-import { AuthProvider } from "./pages/layout";
+import { AuthProvider } from "./pages/useAuth";
 import router from "./router";
 import { theme } from "./theme";
 

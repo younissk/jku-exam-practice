@@ -1,6 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import IndexPage from "../pages";
 import AboutPage from "../pages/AboutPage";
+import DeckAddQuestionPage from "../pages/DeckAddQuestionPage";
+import DeckCreatePage from "../pages/DeckCreatePage";
+import DeckLeaderboardPage from "../pages/DeckLeaderboardPage";
+import DeckListPage from "../pages/DeckListPage";
+import DeckOverviewPage from "../pages/DeckOverviewPage";
+import DeckTestPage from "../pages/DeckTestPage";
 import { AppLayout } from "../pages/layout";
 import Login from "../pages/LoginPage";
 import Results from "../pages/Results";
@@ -73,6 +79,34 @@ const router = createBrowserRouter([
       {
         path: "bookmarks",
         element: <BookmarkRedirect />,
+      },
+      {
+        path: "/decks",
+        element: <DeckListPage />,
+      },
+      {
+        path: "/decks/:deckId",
+        element: <DeckOverviewPage />,
+      },
+      {
+        path: "/decks/:deckId/test",
+        element: <DeckTestPage />,
+      },
+      {
+        path: "/decks/:deckId/leaderboard",
+        element: <DeckLeaderboardPage />,
+      },
+      {
+        path: "/decks/new",
+        element: <DeckCreatePage />,
+      },
+      {
+        path: "/decks/:deckId/new-question",
+        element: <DeckAddQuestionPage />,
+      },
+      {
+        path: "*",
+        element: "Page Not Found",
       },
     ],
   },

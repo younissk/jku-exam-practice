@@ -15,7 +15,7 @@ import {
   loginWithEmailAndPassword,
   registerWithEmailAndPassword,
 } from "../../firebase/auth";
-import { useAuth } from "./layout";
+import { useAuth } from "./useAuth";
 
 const Login = () => {
   const [email, setEmail] = useState("");

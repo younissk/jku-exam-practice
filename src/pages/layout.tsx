@@ -1,54 +1,7 @@
 import { AppShell, Burger, Button, Group, ScrollArea } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { onAuthStateChanged } from "firebase/auth";
-import React, { createContext, useContext, useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { auth } from "../../firebase";
-
-const AuthContext = createContext({
-  user: null,
-  setUser: (user: any) => {},
-});
-
-export const useAuth = () => useContext(AuthContext);
-
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // Loading state for initial auth check
-
-  useEffect(() => {
-    // Listen for auth state changes
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      if (firebaseUser) {
-        // User is logged in, update context
-        setUser({
-          email: firebaseUser.email,
-          uid: firebaseUser.uid,
-        });
-        console.log("User logged in:", firebaseUser);
-      } else {
-        // User is logged out
-        setUser(null);
-        console.log("User logged out");
-      }
-      setLoading(false); // Set loading to false after auth state is determined
-    });
-
-    // Cleanup subscription on unmount
-    return () => unsubscribe();
-  }, []);
-
-  if (loading) {
-    // Optionally, show a loading screen while checking auth
-    return <div>Loading...</div>;
-  }
-
-  return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      {children}
-    </AuthContext.Provider>
-  );
-}
+import { useAuth } from "./useAuth";
 
 export function AppLayout() {
   const [opened, { toggle }] = useDisclosure();
@@ -80,10 +33,6 @@ export function AppLayout() {
             <h3>JKU Exam Simulator</h3>
             <Group ml="xl" gap={10} visibleFrom="sm">
               <Link to="/">Home</Link>
-              <Link to="/bookmarks">Bookmarks</Link>
-              <Link to="/about">About</Link>
-              <Link to="/exam-request">Request an Exam</Link>
-              <Link to="/feature-request">Request a Feature</Link>
               {user ? (
                 <>
                   <span>Welcome, {user.email}!</span>
@@ -111,10 +60,6 @@ export function AppLayout() {
             }}
           >
             <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-            <Link to="/bookmarks">Bookmarks</Link>
-            <Link to="/exam-request">Request an Exam</Link>
-            <Link to="/feature-request">Request a Feature</Link>
             {user ? (
               <Button onClick={handleLogout} variant="light">
                 Logout
