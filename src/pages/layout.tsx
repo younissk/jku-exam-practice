@@ -126,20 +126,32 @@ export function AppLayout() {
             
 
             <Stack>
-              <Button variant="light" leftSection={<IconHome2 size={18} />} onClick={() => navigate("/")}>
+              <Button variant="light" leftSection={<IconHome2 size={18} />} onClick={() => {
+                navigate("/");
+                toggle();
+              }}>
                 Home
               </Button>
-            <Button variant="light" leftSection={<IconCards size={18} />} onClick={() => navigate("/decks")}>
+            <Button variant="light" leftSection={<IconCards size={18} />} onClick={() => {
+                navigate("/decks");
+                toggle();
+              }}>
               All Decks
             </Button>
-            <Button variant="light" leftSection={<IconPlus size={18} />} onClick={() => navigate("/decks/new")}>
+            <Button variant="light" leftSection={<IconPlus size={18} />} onClick={() => {
+                navigate("/decks/new");
+                toggle();
+              }}>
               Create Deck
             </Button>
 
             {user ? (
               <Button
                 leftSection={<IconLogout size={18} />}
-                onClick={handleLogout}
+                onClick={() => {
+                  handleLogout();
+                  toggle();
+                }}
                 variant="light"
               >
                 Logout
@@ -147,7 +159,10 @@ export function AppLayout() {
             ) : (
               <Button
                 leftSection={<IconLogin size={18} />}
-                onClick={() => navigate("/login")}
+                onClick={() => {
+                  navigate("/login");
+                  toggle();
+                }}
                 variant="light"
               >
                 Login

@@ -53,13 +53,15 @@ export const getQuestionsByDeckId = async (
   deckId: string,
 ): Promise<Question[]> => {
   const questionsRef = collection(db, "questions");
-  // We look for questions that have "deckIds" array containing this deckId.
   const q = query(questionsRef, where("deckIds", "array-contains", deckId));
   const snapshot = await getDocs(q);
 
   const results: Question[] = [];
   snapshot.forEach((docSnap) => {
-    results.push(docSnap.data() as Question);
+    results.push({
+      ...docSnap.data(),
+      id: docSnap.id,
+    } as Question);
   });
   return results;
 };

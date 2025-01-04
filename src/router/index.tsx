@@ -9,6 +9,7 @@ import DeckOverviewPage from "../pages/DeckOverviewPage";
 import DeckTestPage from "../pages/DeckTestPage/DeckTestPage";
 import { AppLayout } from "../pages/layout";
 import Login from "../pages/LoginPage";
+import DeckEditPage from "../pages/DeckEditPage";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: "/decks/:deckId/new-question",
         element: <DeckAddQuestionPage />,
+      },
+      {
+        path: "/decks/:deckId/edit",
+        element: <DeckEditPage />,
       },
       {
         path: "*",

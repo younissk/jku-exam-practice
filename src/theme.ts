@@ -3,16 +3,16 @@ import { createTheme, rem } from "@mantine/core";
 export const theme = createTheme({
   colors: {
     brand: [
-      "#e8faff", // Lightest shade
+      "#e8faff", 
       "#d1f3ff",
       "#a6e7ff",
       "#75d7ff",
-      "#4bcaff", // Mid-tone
+      "#4bcaff",
       "#32baff",
       "#2ba5e5",
       "#238fcb",
       "#1a75a8",
-      "#125a85", // Darkest shade
+      "#125a85", 
     ],
   },
   primaryColor: "brand",

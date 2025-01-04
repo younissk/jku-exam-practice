@@ -1,28 +1,20 @@
-// FILE: src/pages/DeckAddQuestionPage.tsx
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Container, Select, Button, Stack, Title, Checkbox, TextInput } from "@mantine/core";
-import { QuestionType } from "../../data/interfaces/Test";
-import { createQuestion, linkQuestionToDeck } from "../../firebase/firestore";
-import ReactQuill from "react-quill";
+import React, { useState } from "react";
+import { Card, Button, Stack, Select, TextInput, Checkbox } from "@mantine/core";
 import 'react-quill/dist/quill.snow.css';
+import { Question, QuestionType } from "../../data/interfaces/Test";
+import { updateQuestion } from "../../firebase/firestore";
+import QuestionHTMLEditor from "../components/QuestionHTMLEditor";
 
-const DeckAddQuestionPage: React.FC = () => {
-  const { deckId } = useParams();
-  const navigate = useNavigate();
+interface EditQuestionCardProps {
+  question: Question;
+}
 
-  const [questionText, setQuestionText] = useState("");
-  const [questionType, setQuestionType] = useState<QuestionType>(QuestionType.MultipleChoice);
-  const [options, setOptions] = useState<string[]>([]);
-  const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
+const EditQuestionCard: React.FC<EditQuestionCardProps> = ({ question }) => {
+  const [questionText, setQuestionText] = useState(question.question);
+  const [options, setOptions] = useState<string[]>(question.options || []);
+  const [correctAnswers, setCorrectAnswers] = useState<string[]>(question.correctAnswers || []);
+  const [questionType, setQuestionType] = useState<QuestionType>(question.type);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (!deckId) {
-      alert("No deckId provided.");
-      navigate("/decks");
-    }
-  }, [deckId, navigate]);
 
   const handleAddOption = () => {
     setOptions([...options, ""]);
@@ -44,7 +36,6 @@ const DeckAddQuestionPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!deckId) return;
 
     if (!questionText.trim()) {
       alert("Please enter a question.");
@@ -53,21 +44,15 @@ const DeckAddQuestionPage: React.FC = () => {
 
     setLoading(true);
     try {
-      const newQuestionData = {
+
+
+      await updateQuestion(question.id, {
+        ...question,
         question: questionText.trim(),
         type: questionType,
-        topics: [],
-        deckIds: [],
-        options,
-        correctAnswers,
-      };
-
-      const questionId = await createQuestion({
-        ...newQuestionData,
-        id: "",
+        options: options,
+        correctAnswers: correctAnswers,
       });
-      await linkQuestionToDeck(deckId, questionId);
-      navigate(`/decks/${deckId}`);
     } catch (err) {
       console.error("Error creating question:", err);
       alert("Error creating question. See console for details.");
@@ -77,31 +62,19 @@ const DeckAddQuestionPage: React.FC = () => {
   };
 
   return (
-    <Container size="sm" mt="xl">
-      <Title order={2} mb="lg">
-        Add a New Question to Deck
-      </Title>
-      <form onSubmit={handleSubmit}>
-        <Stack gap="md">
-          <ReactQuill
-            value={questionText}
-            onChange={setQuestionText}
-            readOnly={loading}
-            theme="snow"
-          />
-
-          <Select
-            label="Question Type"
-            value={questionType}
-            onChange={(value) => setQuestionType(value as QuestionType)}
-            data={[
-              { value: QuestionType.MultipleChoice, label: "Multiple Choice" },
-              { value: QuestionType.TrueFalse, label: "True/False" },
-              { value: QuestionType.Input, label: "Input (Number/Text)" },
-            ]}
-            disabled={loading}
-          />
-
+    <Card shadow="sm" padding="lg" radius="md" withBorder>
+      <Stack gap="md">
+        <QuestionHTMLEditor
+          content={questionText}
+          setContent={(updatedContent) => setQuestionText(updatedContent)}
+        />
+        <Select
+          label="Question Type"
+          value={questionType}
+          onChange={(value) => setQuestionType(value as QuestionType)}
+          data={Object.values(QuestionType).map((type) => ({ value: type, label: type }))}
+          disabled={loading}
+        />
           {questionType === QuestionType.MultipleChoice && (
             <Stack gap="xs">
               {options.map((opt, idx) => (
@@ -150,14 +123,12 @@ const DeckAddQuestionPage: React.FC = () => {
               disabled={loading}
             />
           )}
-
-          <Button type="submit" fullWidth loading={loading}>
-            {loading ? "Creating..." : "Create Question"}
-          </Button>
-        </Stack>
-      </form>
-    </Container>
+        <Button onClick={handleSubmit} fullWidth loading={loading}>
+          {loading ? "Updating..." : "Update Question"}
+        </Button>
+      </Stack>
+    </Card>
   );
 };
 
-export default DeckAddQuestionPage;
+export default EditQuestionCard; 
