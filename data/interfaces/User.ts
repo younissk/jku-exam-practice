@@ -1,9 +1,6 @@
 export interface User {
-  id: string;
+  uid: string;
   email: string;
+  username?: string;
   xp: number;
-  displayName?: string;
-  color?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
 }

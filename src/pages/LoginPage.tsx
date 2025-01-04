@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -7,9 +8,10 @@ import {
   Stack,
   Text,
   TextInput,
+  Container,
+  Title,
 } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   loginWithEmailAndPassword,
@@ -17,7 +19,7 @@ import {
 } from "../../firebase/auth";
 import { useAuth } from "./useAuth";
 
-const Login = () => {
+const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRegister, setIsRegister] = useState(false);
@@ -34,8 +36,7 @@ const Login = () => {
     if (!isValidJKUEmail(email)) {
       notifications.show({
         title: "Invalid Email",
-        message:
-          "Please use your JKU email not your private email. I don’t want to see your private email, that’s weird af.",
+        message: "Please use your JKU email.",
         color: "red",
       });
       return;
@@ -47,10 +48,7 @@ const Login = () => {
         ? await registerWithEmailAndPassword(email, password)
         : await loginWithEmailAndPassword(email, password);
 
-      console.log("User returned from Firebase:", user); // Log the user object returned by Firebase
-
-      // Update the global user state
-      setUser({ email: user.email });
+      setUser(user);
 
       notifications.show({
         title: "Success",
@@ -60,10 +58,8 @@ const Login = () => {
         color: "teal",
       });
 
-      // Redirect to the home page
       navigate("/");
     } catch (error: any) {
-      console.error("Error during login/registration:", error); // Log the error for debugging
       notifications.show({
         title: "Error",
         message: error.message || "An unexpected error occurred.",
@@ -75,26 +71,12 @@ const Login = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        background: "#f9fafc",
-      }}
-    >
-      <Card
-        shadow="md"
-        radius="md"
-        p="lg"
-        withBorder
-        style={{ width: "400px" }}
-      >
-        <Stack spacing="md">
-          <Text size="lg" weight={700} align="center">
+    <Container size="xs" mt="xl">
+      <Card shadow="md" radius="md" p="lg" withBorder>
+        <Stack gap="md">
+          <Title order={3} ta="center">
             {isRegister ? "Create an Account" : "Welcome Back"}
-          </Text>
+          </Title>
           <Divider />
           <TextInput
             label="Email"
@@ -104,7 +86,7 @@ const Login = () => {
             required
             error={
               email && !isValidJKUEmail(email)
-                ? "Please use your JKU email format (e.g., K12345678@students.jku.at). I don’t want to see your private email, that’s weird af."
+                ? "Please use your JKU email format."
                 : undefined
             }
           />
@@ -121,20 +103,13 @@ const Login = () => {
             }
           />
           <Button onClick={handleAction} fullWidth disabled={loading}>
-            {loading ? (
-              <Loader size="sm" color="white" />
-            ) : isRegister ? (
-              "Register"
-            ) : (
-              "Login"
-            )}
+            {loading ? <Loader size="sm" color="white" /> : isRegister ? "Register" : "Login"}
           </Button>
-          <Text align="center" size="sm">
+          <Text ta="center" size="sm">
             {isRegister ? "Already have an account?" : "New here?"}{" "}
             <Button
               variant="subtle"
               size="xs"
-              compact
               onClick={() => setIsRegister((prev) => !prev)}
             >
               {isRegister ? "Login instead" : "Register instead"}
@@ -142,8 +117,8 @@ const Login = () => {
           </Text>
         </Stack>
       </Card>
-    </div>
+    </Container>
   );
 };
 
-export default Login;
+export default LoginPage;

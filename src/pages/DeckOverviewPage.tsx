@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { Container, Loader, Text, Title, Button, Stack, Card, Group } from "@mantine/core";
 import { Deck } from "../../data/interfaces/Deck";
-import { getDeck } from "../../firebase/firestore";
+import { getDeck, getUser } from "../../firebase/firestore";
 
 const DeckOverviewPage: React.FC = () => {
   const { deckId } = useParams();
   const [deck, setDeck] = useState<Deck | null>(null);
+  const [creatorName, setCreatorName] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!deckId) return;
     async function loadDeck() {
       try {
+        if (!deckId) return;
         const deckData = await getDeck(deckId);
         setDeck(deckData);
+        if (deckData?.creatorId) {
+          const userData = await getUser(deckData.creatorId);
+          setCreatorName(userData?.username || "Unknown");
+        }
       } catch (err) {
         console.error("Error loading deck:", err);
       } finally {
@@ -23,63 +32,39 @@ const DeckOverviewPage: React.FC = () => {
     loadDeck();
   }, [deckId]);
 
-  if (loading) return <div className="loading">Loading deck...</div>;
-  if (!deck) return <div className="error">Deck not found.</div>;
+  if (loading) return <Loader size="xl" variant="dots" />;
+  if (!deck) return <Text color="red">Deck not found.</Text>;
 
   return (
-    <div className="deck-overview">
-      <DeckHeader title={deck.title} />
-      <DeckDetails questionCount={deck.questionIds.length} timer={deck.timer} />
-      <DeckActions deckId={deckId!} />
-    </div>
+    <Container size="md" mt="xl">
+      <Card shadow="sm" padding="lg" radius="md" withBorder>
+        <Title order={2} mb="lg" ta="center">
+          {deck.title}
+        </Title>
+        <Stack gap="md">
+          <Text size="lg" ta="center">
+            This deck has {deck.questionIds.length} questions.
+          </Text>
+          {deck.timer && (
+            <Text size="lg" ta="center">
+              Time limit: {deck.timer} seconds
+            </Text>
+          )}
+          <Text size="lg" ta="center">
+            Created by: {creatorName}
+          </Text>
+          <Group justify="center" mt="md">
+            <Button variant="filled" color="blue" onClick={() => navigate(`/decks/${deckId}/test`)}>
+              Start Test
+            </Button>
+            <Button variant="outline" color="blue" onClick={() => navigate(`/decks/${deckId}/leaderboard`)}>
+              View Leaderboard
+            </Button>
+          </Group>
+        </Stack>
+      </Card>
+    </Container>
   );
 };
 
 export default DeckOverviewPage;
-
-// FILE: src/components/DeckHeader.tsx
-
-interface DeckHeaderProps {
-  title: string;
-}
-
-export const DeckHeader: React.FC<DeckHeaderProps> = ({ title }) => (
-  <header className="deck-header">
-    <h1>{title}</h1>
-  </header>
-);
-
-// FILE: src/components/DeckDetails.tsx
-
-interface DeckDetailsProps {
-  questionCount: number;
-  timer?: number;
-}
-
-export const DeckDetails: React.FC<DeckDetailsProps> = ({
-  questionCount,
-  timer,
-}) => (
-  <div className="deck-details">
-    <p>This deck has {questionCount} questions.</p>
-    {timer && <p>Time limit: {timer} seconds</p>}
-  </div>
-);
-
-// FILE: src/components/DeckActions.tsx
-import { Link } from "react-router-dom";
-
-interface DeckActionsProps {
-  deckId: string;
-}
-
-export const DeckActions: React.FC<DeckActionsProps> = ({ deckId }) => (
-  <div className="deck-actions">
-    <Link to={`/decks/${deckId}/test`} className="action-button">
-      Start Test
-    </Link>
-    <Link to={`/decks/${deckId}/leaderboard`} className="action-button">
-      View Leaderboard
-    </Link>
-  </div>
-);

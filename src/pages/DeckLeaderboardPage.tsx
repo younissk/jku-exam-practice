@@ -1,13 +1,11 @@
 // FILE: src/pages/DeckLeaderboardPage.tsx
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Container, Text, Title, Loader, Card, Grid } from "@mantine/core";
+import { FaCrown } from "react-icons/fa";
 import { Deck, LeaderboardItem } from "../../data/interfaces/Deck";
-import { getDeck, getUser } from "../../firebase/firestore"; // or wherever these live
+import { getDeck, getUser } from "../../firebase/firestore";
 
-/**
- * We'll define an interface for our "enhanced" leaderboard row,
- * including the username we fetch from the user's doc.
- */
 interface EnhancedLeaderboardItem extends LeaderboardItem {
   username?: string;
 }
@@ -16,19 +14,15 @@ const DeckLeaderboardPage: React.FC = () => {
   const { deckId } = useParams();
   const [deck, setDeck] = useState<Deck | null>(null);
   const [loading, setLoading] = useState(true);
-
-  /**
-   * We'll keep a separate state for the "enhanced" leaderboard,
-   * where each item has a "username" in addition to userId, xp, score, etc.
-   */
   const [leaderboard, setLeaderboard] = useState<EnhancedLeaderboardItem[]>([]);
 
   useEffect(() => {
     if (!deckId) return;
 
     async function loadDeckAndUsers() {
+      if (!deckId) return;
+      
       try {
-        // 1) Fetch the deck
         const deckData = await getDeck(deckId);
         if (!deckData) {
           setDeck(null);
@@ -37,27 +31,22 @@ const DeckLeaderboardPage: React.FC = () => {
         }
         setDeck(deckData);
 
-        // 2) Sort the deck's existing leaderboard by XP desc
         const sorted = [...(deckData.leaderboard || [])].sort(
-          (a, b) => (b.xp || 0) - (a.xp || 0),
+          (a, b) => (b.xp || 0) - (a.xp || 0)
         );
 
-        // 3) For each leaderboard entry, fetch the user's doc
         const userDocs = await Promise.all(
-          sorted.map((item) => getUser(item.userId)),
+          sorted.map((item) => getUser(item.userId))
         );
 
-        // 4) Combine user info with the leaderboard item
         const enhanced = sorted.map((item, idx) => {
           const userDoc = userDocs[idx];
           return {
             ...item,
             username: userDoc?.username ?? item.userId,
-            // If no username, fallback to userId
           };
         });
 
-        // 5) Store in state
         setLeaderboard(enhanced);
       } catch (err) {
         console.error("Error loading deck or users:", err);
@@ -69,37 +58,38 @@ const DeckLeaderboardPage: React.FC = () => {
     loadDeckAndUsers();
   }, [deckId]);
 
-  if (loading) return <div>Loading leaderboard...</div>;
-  if (!deck) return <div>Deck not found.</div>;
+  if (loading) return <Loader />;
+  if (!deck) return <Text>Deck not found.</Text>;
 
   return (
-    <div>
-      <h1>Leaderboard for {deck.title}</h1>
+    <Container size="md" mt="xl">
+      <Title order={2} mb="lg" ta="center">
+        Leaderboard for {deck.title}
+      </Title>
       {leaderboard.length === 0 ? (
-        <p>No leaderboard entries yet.</p>
+        <Text ta="center">No leaderboard entries yet.</Text>
       ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Username</th>
-              <th>XP</th>
-              <th>Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            {leaderboard.map((item, index) => (
-              <tr key={item.userId}>
-                <td>{index + 1}</td>
-                <td>{item.username}</td>
-                <td>{item.xp ?? 0}</td>
-                <td>{item.score !== undefined ? `${item.score}%` : "N/A"}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <Card shadow="sm" padding="lg">
+          <Grid>
+            <Grid.Col span={3}><Text fw={500}>Rank</Text></Grid.Col>
+            <Grid.Col span={3}><Text fw={500}>Username</Text></Grid.Col>
+            <Grid.Col span={3}><Text fw={500}>XP</Text></Grid.Col>
+            <Grid.Col span={3}><Text fw={500}>Score</Text></Grid.Col>
+          </Grid>
+          {leaderboard.map((item, index) => (
+            <Grid key={item.userId} align="center">
+              <Grid.Col span={3}>
+                {index === 0 && <FaCrown color="gold" style={{ marginRight: 5 }} />}
+                {index + 1}
+              </Grid.Col>
+              <Grid.Col span={3}>{item.username}</Grid.Col>
+              <Grid.Col span={3}>{item.xp ?? 0}</Grid.Col>
+              <Grid.Col span={3}>{item.score !== undefined ? `${item.score}%` : "N/A"}</Grid.Col>
+            </Grid>
+          ))}
+        </Card>
       )}
-    </div>
+    </Container>
   );
 };
 

@@ -1,6 +1,7 @@
 // FILE: src/pages/DeckAddQuestionPage.tsx
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Container, TextInput, Select, Button, Stack, Title, Checkbox, Textarea } from "@mantine/core";
 import { QuestionType } from "../../data/interfaces/Test";
 import { createQuestion, linkQuestionToDeck } from "../../firebase/firestore";
 
@@ -8,11 +9,8 @@ const DeckAddQuestionPage: React.FC = () => {
   const { deckId } = useParams();
   const navigate = useNavigate();
 
-  // We'll store the form fields in local state
   const [questionText, setQuestionText] = useState("");
-  const [questionType, setQuestionType] = useState<QuestionType>(
-    QuestionType.MultipleChoice,
-  );
+  const [questionType, setQuestionType] = useState<QuestionType>(QuestionType.MultipleChoice);
   const [options, setOptions] = useState<string[]>([]);
   const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -35,7 +33,6 @@ const DeckAddQuestionPage: React.FC = () => {
   };
 
   const handleToggleCorrectAnswer = (value: string) => {
-    // if not in correctAnswers, add it; otherwise remove it
     if (correctAnswers.includes(value)) {
       setCorrectAnswers(correctAnswers.filter((a) => a !== value));
     } else {
@@ -47,7 +44,6 @@ const DeckAddQuestionPage: React.FC = () => {
     e.preventDefault();
     if (!deckId) return;
 
-    // Basic validation
     if (!questionText.trim()) {
       alert("Please enter a question.");
       return;
@@ -55,22 +51,20 @@ const DeckAddQuestionPage: React.FC = () => {
 
     setLoading(true);
     try {
-      // 1) Create a new question doc
       const newQuestionData = {
         question: questionText.trim(),
         type: questionType,
         topics: [],
-        deckIds: [], // We'll link them next
+        deckIds: [],
         options,
         correctAnswers,
       };
 
-      const questionId = await createQuestion(newQuestionData);
-
-      // 2) Link question to the deck
+      const questionId = await createQuestion({
+        ...newQuestionData,
+        id: "",
+      });
       await linkQuestionToDeck(deckId, questionId);
-
-      // 3) Navigate back to deck overview
       navigate(`/decks/${deckId}`);
     } catch (err) {
       console.error("Error creating question:", err);
@@ -81,104 +75,88 @@ const DeckAddQuestionPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Add a New Question to Deck</h1>
+    <Container size="sm" mt="xl">
+      <Title order={2} mb="lg">
+        Add a New Question to Deck
+      </Title>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Question Text:</label>
-          <textarea
+        <Stack gap="md">
+          <Textarea
+            label="Question Text"
+            placeholder="Enter your question here"
             value={questionText}
             onChange={(e) => setQuestionText(e.target.value)}
             disabled={loading}
+            required
           />
-        </div>
 
-        <div>
-          <label>Question Type:</label>
-          <select
+          <Select
+            label="Question Type"
             value={questionType}
-            onChange={(e) => setQuestionType(e.target.value as QuestionType)}
+            onChange={(value) => setQuestionType(value as QuestionType)}
+            data={[
+              { value: QuestionType.MultipleChoice, label: "Multiple Choice" },
+              { value: QuestionType.TrueFalse, label: "True/False" },
+              { value: QuestionType.Input, label: "Input (Number/Text)" },
+            ]}
             disabled={loading}
-          >
-            <option value={QuestionType.MultipleChoice}>Multiple Choice</option>
-            <option value={QuestionType.TrueFalse}>True/False</option>
-            <option value={QuestionType.Input}>Input (Number/Text)</option>
-          </select>
-        </div>
+          />
 
-        {/* For multiple choice, let the user add options */}
-        {questionType === QuestionType.MultipleChoice && (
-          <div>
-            <label>Options:</label>
-            {options.map((opt, idx) => (
-              <div key={idx}>
-                <input
-                  type="text"
-                  value={opt}
-                  onChange={(e) => handleOptionChange(e.target.value, idx)}
-                  disabled={loading}
-                />
-                <input
-                  type="checkbox"
-                  checked={correctAnswers.includes(opt)}
-                  onChange={() => handleToggleCorrectAnswer(opt)}
-                  disabled={loading}
-                />
-                <label>Correct?</label>
-              </div>
-            ))}
-            <button type="button" onClick={handleAddOption} disabled={loading}>
-              + Add Option
-            </button>
-          </div>
-        )}
+          {questionType === QuestionType.MultipleChoice && (
+            <Stack gap="xs">
+              {options.map((opt, idx) => (
+                <div key={idx}>
+                  <TextInput
+                    value={opt}
+                    onChange={(e) => handleOptionChange(e.target.value, idx)}
+                    disabled={loading}
+                  />
+                  <Checkbox
+                    label="Correct?"
+                    checked={correctAnswers.includes(opt)}
+                    onChange={() => handleToggleCorrectAnswer(opt)}
+                    disabled={loading}
+                  />
+                </div>
+              ))}
+              <Button onClick={handleAddOption} disabled={loading}>
+                + Add Option
+              </Button>
+            </Stack>
+          )}
 
-        {/* For True/False, we might just show two radio buttons, for example */}
-        {questionType === QuestionType.TrueFalse && (
-          <div>
-            <label>
-              <input
-                type="radio"
-                name="tf"
-                value="true"
+          {questionType === QuestionType.TrueFalse && (
+            <Stack gap="xs">
+              <Checkbox
+                label="True"
                 checked={correctAnswers.includes("true")}
                 onChange={() => setCorrectAnswers(["true"])}
                 disabled={loading}
               />
-              True
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="tf"
-                value="false"
+              <Checkbox
+                label="False"
                 checked={correctAnswers.includes("false")}
                 onChange={() => setCorrectAnswers(["false"])}
                 disabled={loading}
               />
-              False
-            </label>
-          </div>
-        )}
+            </Stack>
+          )}
 
-        {/* For Input type, the correctAnswers might just be a single-value array */}
-        {questionType === QuestionType.Input && (
-          <div>
-            <label>Correct Answer (text/number):</label>
-            <input
-              type="text"
+          {questionType === QuestionType.Input && (
+            <TextInput
+              label="Correct Answer (text/number)"
               value={correctAnswers[0] || ""}
               onChange={(e) => setCorrectAnswers([e.target.value])}
               disabled={loading}
             />
-          </div>
-        )}
+          )}
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Creating..." : "Create Question"}
-        </button>
+          <Button type="submit" fullWidth loading={loading}>
+            {loading ? "Creating..." : "Create Question"}
+          </Button>
+        </Stack>
       </form>
-    </div>
+    </Container>
   );
 };
 

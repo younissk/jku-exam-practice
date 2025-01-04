@@ -1,42 +1,31 @@
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, User } from "firebase/auth";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../../firebase";
 
-const AuthContext = createContext({
+const AuthContext = createContext<{
+  user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+}>({
   user: null,
-  setUser: (user: any) => {},
+  setUser: () => {},
 });
 
 export const useAuth = () => useContext(AuthContext);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // Loading state for initial auth check
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Listen for auth state changes
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      if (firebaseUser) {
-        // User is logged in, update context
-        setUser({
-          email: firebaseUser.email,
-          uid: firebaseUser.uid,
-        });
-        console.log("User logged in:", firebaseUser);
-      } else {
-        // User is logged out
-        setUser(null);
-        console.log("User logged out");
-      }
-      setLoading(false); // Set loading to false after auth state is determined
+      setUser(firebaseUser || null);
+      setLoading(false);
     });
 
-    // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
 
   if (loading) {
-    // Optionally, show a loading screen while checking auth
     return <div>Loading...</div>;
   }
 

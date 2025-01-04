@@ -14,11 +14,12 @@ import {
   arrayRemove,
   setDoc,
   type DocumentData,
+  deleteDoc,
 } from "firebase/firestore";
 
 import { db } from "."; // Adjust if needed
 import { Question } from "../data/interfaces/Test";
-import { Deck, LeaderboardItem } from "../data/interfaces/Deck";
+import { Deck } from "../data/interfaces/Deck";
 import { User } from "../data/interfaces/User";
 // If you have TypeScript interfaces, import them:
 
@@ -90,7 +91,7 @@ export const updateQuestion = async (
  */
 export const deleteQuestion = async (questionId: string) => {
   const questionRef = doc(db, "questions", questionId);
-  await questionRef.delete();
+  await deleteDoc(questionRef);
 };
 
 /**
@@ -257,11 +258,11 @@ export const updateDeckLeaderboard = async (
  * Because you're using Firebase Auth, typically your user docs
  * might be keyed by the same UID. This is an example snippet.
  */
-export const getUser = async (userId: string): Promise<User | null> => {
+export const getUser = async (userId: string) => {
   const userRef = doc(db, "users", userId);
   const snap = await getDoc(userRef);
   if (!snap.exists()) return null;
-  return snap.data() as User;
+  return snap.data();
 };
 
 /**
@@ -290,4 +291,9 @@ export const addUserXP = async (userId: string, amount: number) => {
     const newXP = (currentUser.xp || 0) + amount;
     await updateDoc(userRef, { xp: newXP });
   }
+};
+
+export const updateUser = async (userId: string, data: Partial<User>) => {
+  const userRef = doc(db, "users", userId);
+  await updateDoc(userRef, data);
 };

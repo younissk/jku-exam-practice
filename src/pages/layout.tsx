@@ -1,78 +1,167 @@
-import { AppShell, Burger, Button, Group, ScrollArea } from "@mantine/core";
+import { 
+  AppShell, 
+  Burger, 
+  Button, 
+  Divider, 
+  Group, 
+  ScrollArea, 
+  Stack, 
+  Text, 
+  TextInput, 
+} from "@mantine/core";
+import { IconHome2, IconCards, IconPlus, IconLogin, IconLogout, } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "./useAuth";
+import { useState, useEffect } from "react";
+import { getUser, updateUser } from "../../firebase/firestore";
+import { User } from "firebase/auth";
+import UserXPIndicator from "../components/UserXPIndicator";
+import { logout } from "../../firebase/auth";
+
 
 export function AppLayout() {
   const [opened, { toggle }] = useDisclosure();
   const navigate = useNavigate();
-  const { user, setUser } = useAuth();
+  
+  const { user, setUser } = useAuth() as {
+    user: User | null;
+    setUser: (user: User | null) => void;
+  };
 
-  console.log("AppLayout - Current User:", user); // Log the current user state in AppLayout
+  const [username, setUsername] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogout = () => {
-    console.log("Logging out user:", user); // Log the user being logged out
-    setUser(null); // Clear the user from context
-    navigate("/login"); // Redirect to login page
+  useEffect(() => {
+    const fetchUsername = async () => {
+      if (user) {
+        const userData = await getUser(user.uid);
+        setUsername(userData?.username || "");
+      }
+    };
+    fetchUsername();
+  }, [user]);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setUser(null);
+      navigate("/login");
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
+  const handleUsernameChange = async (newUsername: string) => {
+    setIsLoading(true);
+    setUsername(newUsername);
+    if (user) {
+      await updateUser(user.uid, { username: newUsername });
+    }
+    setIsLoading(false);
   };
 
   return (
     <AppShell
-      header={{ height: 60 }}
+      header={{
+        height: { base: 60, md: 70, lg: 80 },
+      }}
       navbar={{
-        width: 300,
+        width: { base: 200, md: 250, lg: 300 },
         breakpoint: "sm",
-        collapsed: { desktop: true, mobile: !opened },
+        collapsed: { mobile: !opened },
       }}
       padding="md"
     >
+      {/* HEADER */}
       <AppShell.Header>
-        <Group h="100%" px="md">
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-          <Group justify="space-between" style={{ flex: 1 }}>
-            <h3>JKU Exam Simulator</h3>
-            <Group ml="xl" gap={10} visibleFrom="sm">
-              <Link to="/">Home</Link>
-              {user ? (
-                <>
-                  <span>Welcome, {user.email}!</span>
-                  <Button onClick={handleLogout} variant="light">
-                    Logout
-                  </Button>
-                </>
-              ) : (
-                <Button onClick={() => navigate("/login")} variant="light">
-                  Login
-                </Button>
-              )}
-            </Group>
+        <Group h="100%" px="md" justify="space-between">
+          <Group>
+            <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+            <Text fw={700}>JKU Exam Simulator</Text>
           </Group>
         </Group>
       </AppShell.Header>
 
+      {/* NAVBAR */}
       <AppShell.Navbar p="md">
-        <AppShell.Section grow my="md" component={ScrollArea}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 8,
-            }}
-          >
-            <Link to="/">Home</Link>
+        <ScrollArea>
+          <div>
+
+            {/* USER INFO + AVATAR */}
+            {user && (
+              <>
+            <div>
+              
+                <Text size="sm" color="dimmed">
+                  {user.email}
+                </Text>
+            </div>
+
+            {/* USERNAME INPUT */}
+            <Group mb="sm">
+              <Text size="sm">Username</Text>
+              <TextInput
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter your username"
+                size="xs"
+                style={{ flex: 1 }}
+              />
+              <Button 
+                onClick={() => handleUsernameChange(username)} 
+                loading={isLoading} 
+                size="xs"
+              >
+                Save
+              </Button>
+            </Group>
+
+              <UserXPIndicator user={user} />
+              <Divider my="sm" />
+              </>
+            )}
+
+
+            
+
+            <Stack>
+              <Button variant="light" leftSection={<IconHome2 size={18} />} onClick={() => navigate("/")}>
+                Home
+              </Button>
+            <Button variant="light" leftSection={<IconCards size={18} />} onClick={() => navigate("/decks")}>
+              All Decks
+            </Button>
+            <Button variant="light" leftSection={<IconPlus size={18} />} onClick={() => navigate("/decks/new")}>
+              Create Deck
+            </Button>
+
             {user ? (
-              <Button onClick={handleLogout} variant="light">
+              <Button
+                leftSection={<IconLogout size={18} />}
+                onClick={handleLogout}
+                variant="light"
+              >
                 Logout
               </Button>
             ) : (
-              <Button variant="light" onClick={() => navigate("/login")}>
+              <Button
+                leftSection={<IconLogin size={18} />}
+                onClick={() => navigate("/login")}
+                variant="light"
+              >
                 Login
-              </Button>
-            )}
+                </Button>
+              )}
+            </Stack>
           </div>
-        </AppShell.Section>
-        <AppShell.Section>Made with ❤️</AppShell.Section>
+        </ScrollArea>
+        <Text ta="center" mt="md" size="s">
+          Made with 💻 from Vienna
+        </Text>
       </AppShell.Navbar>
+
+      {/* MAIN CONTENT AREA */}
       <AppShell.Main>
         <Outlet />
       </AppShell.Main>

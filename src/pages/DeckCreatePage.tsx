@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createDeck } from "../../firebase/firestore";
 import { useAuth } from "./useAuth";
+import { Container, TextInput, NumberInput, Button, Title, Stack } from "@mantine/core";
+import { User } from "firebase/auth";
 
 const DeckCreatePage: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -10,7 +12,7 @@ const DeckCreatePage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const { user } = useAuth();
+  const { user } = useAuth() as { user: User | null };
 
   if (!user) {
     return <div>You must be logged in to create a deck.</div>;
@@ -30,9 +32,9 @@ const DeckCreatePage: React.FC = () => {
         timer,
         leaderboard: [],
         questionIds: [],
-        creatorId: user.email,
+        creatorId: user.uid,
       });
-      navigate(`/decks/${deckId}`);
+      navigate(`/decks/${deckId}/new-question`);
     } catch (err) {
       console.error("Error creating deck:", err);
       alert("Error creating deck. See console for details.");
@@ -42,36 +44,35 @@ const DeckCreatePage: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Create a New Deck</h1>
+    <Container size="sm" mt="xl">
+      <Title order={2}  mb="lg">
+        Create a New Deck
+      </Title>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Deck Title</label>
-          <input
-            type="text"
+        <Stack gap="md">
+          <TextInput
+            label="Deck Title"
+            placeholder="Enter deck title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             disabled={loading}
+            required
           />
-        </div>
 
-        <div>
-          <label>Timer (seconds)</label>
-          <input
-            type="number"
-            value={timer ?? ""}
-            onChange={(e) =>
-              setTimer(parseInt(e.target.value, 10) || undefined)
-            }
+          <NumberInput
+            label="Timer (minutes)"
+            placeholder="Enter timer in minutes"
+            value={timer}
+            onChange={(value) => setTimer(Number(value))}
             disabled={loading}
           />
-        </div>
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Creating..." : "Create Deck"}
-        </button>
+          <Button type="submit" fullWidth loading={loading}>
+            {loading ? "Creating..." : "Create Deck"}
+          </Button>
+        </Stack>
       </form>
-    </div>
+    </Container>
   );
 };
 

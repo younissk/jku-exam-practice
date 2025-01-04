@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { Container, Loader, Grid, Title, TextInput } from "@mantine/core";
 import { Deck } from "../../data/interfaces/Deck";
 import { getAllDecks } from "../../firebase/firestore";
 import { DeckCard } from "../components/DeckCard/DeckCard";
 
-const DecksListPage: React.FC = () => {
+const DeckListPage: React.FC = () => {
   const [decks, setDecks] = useState<Deck[]>([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     async function loadDecks() {
@@ -21,20 +23,34 @@ const DecksListPage: React.FC = () => {
     loadDecks();
   }, []);
 
+  const filteredDecks = decks.filter((deck) =>
+    deck.title.toLowerCase().includes(search.toLowerCase())
+  );
+
   if (loading) {
-    return <div>Loading Decks...</div>;
+    return <Loader size="xl" variant="dots" />;
   }
 
   return (
-    <div className="decks-list-container">
-      <h1>All Decks</h1>
-      <div className="decks-grid">
-        {decks.map((deck) => (
-          <DeckCard deck={deck} />
+    <Container size="lg" mt="xl">
+      <Title order={2} mb="lg" ta="center">
+        All Decks
+      </Title>
+      <TextInput
+        placeholder="Search decks"
+        value={search}
+        onChange={(e) => setSearch(e.currentTarget.value)}
+        mb="lg"
+      />
+      <Grid>
+        {filteredDecks.map((deck) => (
+          <Grid.Col key={deck.id} span={{ base: 12, sm: 6, md: 4, lg: 3 }}>
+            <DeckCard deck={deck} />
+          </Grid.Col>
         ))}
-      </div>
-    </div>
+      </Grid>
+    </Container>
   );
 };
 
-export default DecksListPage;
+export default DeckListPage;

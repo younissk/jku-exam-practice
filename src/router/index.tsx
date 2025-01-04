@@ -6,15 +6,9 @@ import DeckCreatePage from "../pages/DeckCreatePage";
 import DeckLeaderboardPage from "../pages/DeckLeaderboardPage";
 import DeckListPage from "../pages/DeckListPage";
 import DeckOverviewPage from "../pages/DeckOverviewPage";
-import DeckTestPage from "../pages/DeckTestPage";
+import DeckTestPage from "../pages/DeckTestPage/DeckTestPage";
 import { AppLayout } from "../pages/layout";
 import Login from "../pages/LoginPage";
-import Results from "../pages/Results";
-import SubjectPage from "../pages/SubjectPage";
-import TestPage from "../pages/TestPage";
-import TestSimulator from "../pages/TestSimulator";
-import BookmarkRedirect from "../pages/TestSimulator/BookmarkRedirect";
-import ExamRedirect from "../pages/TestSimulator/ExamRedirect";
 
 const router = createBrowserRouter([
   {
@@ -55,30 +49,6 @@ const router = createBrowserRouter([
             feature, send me a message on Discord: younissk
           </div>
         ),
-      },
-      {
-        path: "subject/:subjectId",
-        element: <SubjectPage />,
-      },
-      {
-        path: "exam",
-        element: <ExamRedirect />,
-      },
-      {
-        path: "results",
-        element: <Results />,
-      },
-      {
-        path: "test-simulation",
-        element: <TestSimulator />,
-      },
-      {
-        path: "test/:testId",
-        element: <TestPage />,
-      },
-      {
-        path: "bookmarks",
-        element: <BookmarkRedirect />,
       },
       {
         path: "/decks",
