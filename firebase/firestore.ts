@@ -145,6 +145,18 @@ export const getAllDecks = async (): Promise<Deck[]> => {
   return decks;
 };
 
+export const getDecksByCreatorId = async (creatorId: string): Promise<Deck[]> => {
+  const decksSnapshot = await getDocs(collection(db, "decks"));
+  const decks: Deck[] = [];
+  decksSnapshot.forEach((docSnap) => {
+    const dData = docSnap.data() as Deck;
+    if (dData.creatorId === creatorId) {
+      decks.push(dData);
+    }
+  });
+  return decks;
+};
+
 /**
  * Create a new Deck in the "decks" collection.
  * For example, pass { title: "Python Exam 2024", timer: 1800, ... } or similar

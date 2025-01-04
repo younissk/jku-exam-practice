@@ -1,15 +1,21 @@
-import { 
-  AppShell, 
-  Burger, 
-  Button, 
-  Divider, 
-  Group, 
-  ScrollArea, 
-  Stack, 
-  Text, 
-  TextInput, 
+import {
+  AppShell,
+  Burger,
+  Button,
+  Divider,
+  Group,
+  ScrollArea,
+  Stack,
+  Text,
+  TextInput,
 } from "@mantine/core";
-import { IconHome2, IconCards, IconPlus, IconLogin, IconLogout, } from "@tabler/icons-react";
+import {
+  IconHome2,
+  IconCards,
+  IconPlus,
+  IconLogin,
+  IconLogout,
+} from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "./useAuth";
@@ -19,11 +25,10 @@ import { User } from "firebase/auth";
 import UserXPIndicator from "../components/UserXPIndicator";
 import { logout } from "../../firebase/auth";
 
-
 export function AppLayout() {
   const [opened, { toggle }] = useDisclosure();
   const navigate = useNavigate();
-  
+
   const { user, setUser } = useAuth() as {
     user: User | null;
     setUser: (user: User | null) => void;
@@ -77,7 +82,12 @@ export function AppLayout() {
       <AppShell.Header>
         <Group h="100%" px="md" justify="space-between">
           <Group>
-            <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              hiddenFrom="sm"
+              size="sm"
+            />
             <Text fw={700}>JKU Exam Simulator</Text>
           </Group>
         </Group>
@@ -87,85 +97,104 @@ export function AppLayout() {
       <AppShell.Navbar p="md">
         <ScrollArea>
           <div>
-
             {/* USER INFO + AVATAR */}
             {user && (
               <>
-            <div>
-              
-                <Text size="sm" color="dimmed">
-                  {user.email}
-                </Text>
-            </div>
+                <div>
+                  <Text size="sm" color="dimmed">
+                    {user.email}
+                  </Text>
+                </div>
 
-            {/* USERNAME INPUT */}
-            <Group mb="sm">
-              <Text size="sm">Username</Text>
-              <TextInput
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Enter your username"
-                size="xs"
-                style={{ flex: 1 }}
-              />
-              <Button 
-                onClick={() => handleUsernameChange(username)} 
-                loading={isLoading} 
-                size="xs"
-              >
-                Save
-              </Button>
-            </Group>
+                {/* USERNAME INPUT */}
+                <Group mb="sm">
+                  <Text size="sm">Username</Text>
+                  <TextInput
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Enter your username"
+                    size="xs"
+                    style={{ flex: 1 }}
+                  />
+                  <Button
+                    onClick={() => handleUsernameChange(username)}
+                    loading={isLoading}
+                    size="xs"
+                  >
+                    Save
+                  </Button>
+                </Group>
 
-              <UserXPIndicator user={user} />
-              <Divider my="sm" />
+                <UserXPIndicator user={user} />
+                <Stack mt="md">
+                  <Button
+                    variant="light"
+                    leftSection={<IconCards size={18} />}
+                    onClick={() => {
+                      navigate("/my-decks");
+                      toggle();
+                    }}
+                  >
+                    My Decks
+                  </Button>
+                </Stack>
+                <Divider my="sm" />
               </>
             )}
 
-
-            
-
             <Stack>
-              <Button variant="light" leftSection={<IconHome2 size={18} />} onClick={() => {
-                navigate("/");
-                toggle();
-              }}>
+              <Button
+                variant="light"
+                leftSection={<IconHome2 size={18} />}
+                onClick={() => {
+                  navigate("/");
+                  toggle();
+                }}
+              >
                 Home
               </Button>
-            <Button variant="light" leftSection={<IconCards size={18} />} onClick={() => {
-                navigate("/decks");
-                toggle();
-              }}>
-              All Decks
-            </Button>
-            <Button variant="light" leftSection={<IconPlus size={18} />} onClick={() => {
-                navigate("/decks/new");
-                toggle();
-              }}>
-              Create Deck
-            </Button>
-
-            {user ? (
               <Button
-                leftSection={<IconLogout size={18} />}
+                variant="light"
+                leftSection={<IconCards size={18} />}
                 onClick={() => {
-                  handleLogout();
+                  navigate("/decks");
                   toggle();
                 }}
-                variant="light"
               >
-                Logout
+                All Decks
               </Button>
-            ) : (
               <Button
-                leftSection={<IconLogin size={18} />}
+                variant="light"
+                leftSection={<IconPlus size={18} />}
                 onClick={() => {
-                  navigate("/login");
+                  navigate("/decks/new");
                   toggle();
                 }}
-                variant="light"
               >
-                Login
+                Create Deck
+              </Button>
+
+              {user ? (
+                <Button
+                  leftSection={<IconLogout size={18} />}
+                  onClick={() => {
+                    handleLogout();
+                    toggle();
+                  }}
+                  variant="light"
+                >
+                  Logout
+                </Button>
+              ) : (
+                <Button
+                  leftSection={<IconLogin size={18} />}
+                  onClick={() => {
+                    navigate("/login");
+                    toggle();
+                  }}
+                  variant="light"
+                >
+                  Login
                 </Button>
               )}
             </Stack>
