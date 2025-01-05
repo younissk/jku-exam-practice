@@ -67,7 +67,7 @@ const DeckAddQuestionPage: React.FC = () => {
         id: "",
       });
       await linkQuestionToDeck(deckId, questionId);
-      navigate(`/decks/${deckId}/new-question`);
+      window.location.reload();
     } catch (err) {
       console.error("Error creating question:", err);
       alert("Error creating question. See console for details.");
