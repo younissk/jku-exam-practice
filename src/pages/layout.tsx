@@ -15,6 +15,7 @@ import {
   IconPlus,
   IconLogin,
   IconLogout,
+  IconBookmark,
 } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -165,6 +166,16 @@ export function AppLayout() {
               </Button>
               <Button
                 variant="light"
+                leftSection={<IconBookmark size={18} />}
+                onClick={() => {
+                  navigate("/bookmarks");
+                  toggle();
+                }}
+              >
+                Bookmarks
+              </Button>
+              <Button
+                variant="light"
                 leftSection={<IconPlus size={18} />}
                 onClick={() => {
                   navigate("/decks/new");
@@ -199,10 +210,10 @@ export function AppLayout() {
               )}
             </Stack>
           </div>
-        </ScrollArea>
         <Text ta="center" mt="md" size="s">
           Made with 💻 from Vienna
         </Text>
+        </ScrollArea>
       </AppShell.Navbar>
 
       {/* MAIN CONTENT AREA */}

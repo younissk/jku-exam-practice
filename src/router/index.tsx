@@ -11,6 +11,7 @@ import { AppLayout } from "../pages/layout";
 import Login from "../pages/LoginPage";
 import DeckEditPage from "../pages/DeckEditPage";
 import MyDecksPage from "../pages/MyDecksPage";
+import BookmarkDeckPage from "../pages/BookmarkDeckPage";
 
 const router = createBrowserRouter([
   {
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
       {
         path: "/my-decks",
         element: <MyDecksPage />,
+      },
+      {
+        path: "/bookmarks",
+        element: <BookmarkDeckPage />,
       },
       {
         path: "*",

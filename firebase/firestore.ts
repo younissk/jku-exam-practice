@@ -151,7 +151,10 @@ export const getDecksByCreatorId = async (creatorId: string): Promise<Deck[]> =>
   decksSnapshot.forEach((docSnap) => {
     const dData = docSnap.data() as Deck;
     if (dData.creatorId === creatorId) {
-      decks.push(dData);
+      decks.push({
+        ...dData,
+        id: docSnap.id,
+      });
     }
   });
   return decks;
@@ -183,7 +186,10 @@ export const getDeck = async (deckId: string): Promise<Deck | null> => {
   const deckRef = doc(db, "decks", deckId);
   const snap = await getDoc(deckRef);
   if (!snap.exists()) return null;
-  return snap.data() as Deck;
+  return {
+    ...snap.data(),
+    id: snap.id,
+  } as Deck;
 };
 
 /**
