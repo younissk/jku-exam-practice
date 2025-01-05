@@ -67,7 +67,7 @@ const DeckAddQuestionPage: React.FC = () => {
         id: "",
       });
       await linkQuestionToDeck(deckId, questionId);
-      navigate(`/decks/${deckId}`);
+      navigate(`/decks/${deckId}/new-question`);
     } catch (err) {
       console.error("Error creating question:", err);
       alert("Error creating question. See console for details.");
@@ -153,6 +153,9 @@ const DeckAddQuestionPage: React.FC = () => {
 
           <Button type="submit" fullWidth loading={loading}>
             {loading ? "Creating..." : "Create Question"}
+          </Button>
+          <Button onClick={() => navigate(`/decks/${deckId}`)}>
+            Back to Deck
           </Button>
         </Stack>
       </form>
