@@ -13,7 +13,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ question, showAnswer }) => 
     <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Stack gap="md">
         <Text size="lg" fw={500}>
-          <div dangerouslySetInnerHTML={{ __html: question.question }} />
+          <div className="question-content" dangerouslySetInnerHTML={{ __html: question.question }} />
         </Text>
         {showAnswer && (
           <>
