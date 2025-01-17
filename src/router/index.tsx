@@ -12,6 +12,7 @@ import Login from "../pages/LoginPage";
 import DeckEditPage from "../pages/DeckEditPage";
 import MyDecksPage from "../pages/MyDecksPage";
 import BookmarkDeckPage from "../pages/BookmarkDeckPage";
+import { FeedbackAndFeatureRequest } from "../pages/FeedbackAndFeatureRequest";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "feedback",
+        element: <FeedbackAndFeatureRequest />,
       },
       {
         path: "exam-request",

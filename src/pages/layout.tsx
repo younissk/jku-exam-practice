@@ -16,6 +16,7 @@ import {
   IconLogin,
   IconLogout,
   IconBookmark,
+  IconMessage,
 } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -153,6 +154,16 @@ export function AppLayout() {
                 }}
               >
                 Home
+              </Button>
+              <Button
+                variant="light"
+                leftSection={<IconMessage size={18} />}
+                onClick={() => {
+                  navigate("/feedback");
+                  toggle();
+                }}
+              >
+                Feedback / Feature Request
               </Button>
               <Button
                 variant="light"

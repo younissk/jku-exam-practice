@@ -15,8 +15,10 @@ import {
   setDoc,
   type DocumentData,
   deleteDoc,
+  serverTimestamp,
 } from "firebase/firestore";
 
+import { Feedback } from "../data/interfaces/Feedback";
 import { db } from "."; // Adjust if needed
 import { Question } from "../data/interfaces/Test";
 import { Deck } from "../data/interfaces/Deck";
@@ -316,4 +318,36 @@ export const addUserXP = async (userId: string, amount: number) => {
 export const updateUser = async (userId: string, data: Partial<User>) => {
   const userRef = doc(db, "users", userId);
   await updateDoc(userRef, data);
+};
+
+
+// ---------------------------------------------------------------------
+// 4. FEEDBACK
+// ---------------------------------------------------------------------
+
+export const sendFeedback = async (feedback: string) => {
+  const feedbackRef = collection(db, "feedback");
+
+  const feedbackData = {
+    feedback,
+    timestamp: serverTimestamp(),
+    done: false,
+  };
+
+  await addDoc(feedbackRef, feedbackData);
+};
+
+export const getFeedback = async () => {
+  const feedbackRef = collection(db, "feedback");
+  const feedbackSnapshot = await getDocs(feedbackRef);
+
+  const feedback: Feedback[] = [];
+  feedbackSnapshot.forEach((doc) => {
+    feedback.push({
+      ...doc.data(),
+      id: doc.id,
+    } as Feedback);
+  });
+
+  return feedback;
 };
