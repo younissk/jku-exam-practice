@@ -1,5 +1,6 @@
 import { Checkbox, Stack } from "@mantine/core";
 import { Question } from "../../../data/interfaces/Test";
+import LatexRenderer from "../../components/LatexRenderer";
 
 const MultipleChoiceType = (props: {
   currentQuestion: Question;
@@ -15,7 +16,7 @@ const MultipleChoiceType = (props: {
         return (
           <Checkbox
             key={opt}
-            label={opt}
+            label={<LatexRenderer text={opt} />}
             checked={userSelected}
             onChange={() => props.handleMultipleChoiceToggle(opt)}
           />
