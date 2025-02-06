@@ -276,6 +276,17 @@ export const updateDeckLeaderboard = async (
 // 3. USERS
 //---------------------------------------------------------------------
 
+export const getAllUsers = async (): Promise<User[]> => {
+  const usersSnapshot = await getDocs(collection(db, "users"));
+  const users: User[] = [];
+  usersSnapshot.forEach((docSnap) => {
+    const uData = docSnap.data() as User;
+    uData.uid = docSnap.id;
+    users.push(uData);
+  });
+  return users;
+}
+
 /**
  * Because you're using Firebase Auth, typically your user docs
  * might be keyed by the same UID. This is an example snippet.
@@ -319,6 +330,8 @@ export const updateUser = async (userId: string, data: Partial<User>) => {
   const userRef = doc(db, "users", userId);
   await updateDoc(userRef, data);
 };
+
+
 
 
 // ---------------------------------------------------------------------
