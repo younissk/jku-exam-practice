@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card, Text, Button, Stack } from "@mantine/core";
 import { Deck } from "../../../data/interfaces/Deck";
-import { getUser } from "../../../firebase/firestore";
+import { getUser } from "../../firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { IconBookmark } from "@tabler/icons-react";
 

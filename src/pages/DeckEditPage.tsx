@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Loader, Text, Title, Button, Stack, Card, TextInput } from "@mantine/core";
 import { Deck } from "../../data/interfaces/Deck";
-import { getDeck, updateDeck, getQuestionsByDeckId } from "../../firebase/firestore";
+import { getDeck, updateDeck, getQuestionsByDeckId } from "../firebase/firestore";
 import EditQuestionCard from "../components/EditQuestionCard";
+import { Question } from "../../data/interfaces/Test";
 
 const DeckEditPage: React.FC = () => {
   const { deckId } = useParams();
   const [deck, setDeck] = useState<Deck | null>(null);
-  const [questions, setQuestions] = useState<any[]>([]);
+  const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
   const [deckTitle, setDeckTitle] = useState("");
 

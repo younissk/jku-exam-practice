@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getFeedback, sendFeedback } from "../../firebase/firestore";
+import { getFeedback, sendFeedback } from "../firebase/firestore";
 import {
   Card,
   Stack,
@@ -10,10 +10,11 @@ import {
   Group,
   Chip,
 } from "@mantine/core";
+import { Feedback } from "../../data/interfaces/Feedback";
 
 export function FeedbackAndFeatureRequest() {
   const [feedback, setFeedback] = useState<string>("");
-  const [allFeedback, setAllFeedback] = useState<any[]>([]);
+  const [allFeedback, setAllFeedback] = useState<Feedback[]>([]);
 
   useEffect(() => {
     getFeedback().then((feedback) => {
@@ -46,7 +47,7 @@ export function FeedbackAndFeatureRequest() {
           <Card key={feedback.id}>
             <Group gap="xs">
               <Text>{feedback.feedback}</Text>
-              <Text>{feedback.timestamp.toDate().toLocaleString()}</Text>
+              <Text>{new Date(feedback.timestamp).toLocaleString()}</Text>
               <Chip
                 variant="outline"
                 color={feedback.done ? "green" : "red"}

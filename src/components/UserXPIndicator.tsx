@@ -1,7 +1,7 @@
 import { Progress, Text } from "@mantine/core";
 import { User } from "firebase/auth";
 import { useEffect } from "react";
-import { getUser } from "../../firebase/firestore";
+import { getUser } from "../firebase/firestore";
 import { useState } from "react";
 
 const UserXPIndicator = ({ user }: { user: User }) => {

@@ -18,11 +18,11 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
-import { Feedback } from "../data/interfaces/Feedback";
+import { Feedback } from "../../data/interfaces/Feedback";
 import { db } from "."; // Adjust if needed
-import { Question } from "../data/interfaces/Test";
-import { Deck } from "../data/interfaces/Deck";
-import { User } from "../data/interfaces/User";
+import { Question } from "../../data/interfaces/Test";
+import { Deck } from "../../data/interfaces/Deck";
+import { User } from "../../data/interfaces/User";
 // If you have TypeScript interfaces, import them:
 
 //---------------------------------------------------------------------
@@ -52,7 +52,7 @@ export const getAllQuestions = async (): Promise<Question[]> => {
  * This is useful because your new schema has "deckIds" in each question.
  */
 export const getQuestionsByDeckId = async (
-  deckId: string,
+  deckId: string
 ): Promise<Question[]> => {
   const questionsRef = collection(db, "questions");
   const q = query(questionsRef, where("deckIds", "array-contains", deckId));
@@ -84,7 +84,7 @@ export const createQuestion = async (questionData: Question) => {
  */
 export const updateQuestion = async (
   questionId: string,
-  data: Partial<Question>,
+  data: Partial<Question>
 ) => {
   const questionRef = doc(db, "questions", questionId);
   await updateDoc(questionRef, data);
@@ -105,7 +105,7 @@ export const deleteQuestion = async (questionId: string) => {
 export const getFilteredQuestions = async (
   subject?: string,
   year?: string,
-  source?: string,
+  source?: string
 ): Promise<Question[]> => {
   let qRef: Query<DocumentData> = collection(db, "questions");
   // Combine filters as needed:
@@ -147,7 +147,9 @@ export const getAllDecks = async (): Promise<Deck[]> => {
   return decks;
 };
 
-export const getDecksByCreatorId = async (creatorId: string): Promise<Deck[]> => {
+export const getDecksByCreatorId = async (
+  creatorId: string
+): Promise<Deck[]> => {
   const decksSnapshot = await getDocs(collection(db, "decks"));
   const decks: Deck[] = [];
   decksSnapshot.forEach((docSnap) => {
@@ -208,7 +210,7 @@ export const updateDeck = async (deckId: string, data: Partial<Deck>) => {
  */
 export const linkQuestionToDeck = async (
   deckId: string,
-  questionId: string,
+  questionId: string
 ) => {
   const deckRef = doc(db, "decks", deckId);
   const questionRef = doc(db, "questions", questionId);
@@ -228,7 +230,7 @@ export const linkQuestionToDeck = async (
  */
 export const unlinkQuestionFromDeck = async (
   deckId: string,
-  questionId: string,
+  questionId: string
 ) => {
   const deckRef = doc(db, "decks", deckId);
   const questionRef = doc(db, "questions", questionId);
@@ -248,14 +250,16 @@ export const updateDeckLeaderboard = async (
   deckId: string,
   userId: string,
   xp: number,
-  score?: number,
+  score?: number
 ) => {
   const deck = await getDeck(deckId);
   if (!deck) return;
 
   const existingLeaderboard = deck.leaderboard || [];
   // Check if user already on the leaderboard
-  const idx = existingLeaderboard.findIndex((item) => item.userId === userId);
+  const idx = existingLeaderboard.findIndex(
+    (item: { userId: string }) => item.userId === userId
+  );
 
   if (idx === -1) {
     // not found, push a new item
@@ -285,7 +289,7 @@ export const getAllUsers = async (): Promise<User[]> => {
     users.push(uData);
   });
   return users;
-}
+};
 
 /**
  * Because you're using Firebase Auth, typically your user docs
@@ -304,7 +308,7 @@ export const getUser = async (userId: string) => {
  */
 export const createOrUpdateUser = async (
   userId: string,
-  userData: Partial<User>,
+  userData: Partial<User>
 ) => {
   const userRef = doc(db, "users", userId);
   // setDoc overwrites by default; pass {merge:true} if partial
@@ -330,9 +334,6 @@ export const updateUser = async (userId: string, data: Partial<User>) => {
   const userRef = doc(db, "users", userId);
   await updateDoc(userRef, data);
 };
-
-
-
 
 // ---------------------------------------------------------------------
 // 4. FEEDBACK

@@ -1,23 +1,24 @@
-import React from 'react';
-import { getDecksByCreatorId } from '../../firebase/firestore';
-import { Deck } from '../../data/interfaces/Deck';
-import { useAuth } from './useAuth';
-import { Container, Grid, Title } from '@mantine/core';
-import { DeckCard } from '../components/DeckCard/DeckCard';
-
+import React from "react";
+import { getDecksByCreatorId } from "../firebase/firestore";
+import { Deck } from "../../data/interfaces/Deck";
+import { useAuth } from "./useAuth";
+import { Container, Grid, Title } from "@mantine/core";
+import { DeckCard } from "../components/DeckCard/DeckCard";
 
 const MyDecksPage = () => {
   const [decks, setDecks] = React.useState<Deck[]>([]);
 
   const { user } = useAuth();
 
+  React.useEffect(() => {
+    if (user) {
+      getDecksByCreatorId(user.uid).then(setDecks);
+    }
+  }, [user]);
+
   if (!user) {
     return <div>Loading...</div>;
   }
-
-  React.useEffect(() => {
-    getDecksByCreatorId(user.uid).then(setDecks);
-  }, []);
 
   return (
     <Container size="lg" mt="xl">

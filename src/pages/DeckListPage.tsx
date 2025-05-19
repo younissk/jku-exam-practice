@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Loader, Grid, Title, TextInput } from "@mantine/core";
 import { Deck } from "../../data/interfaces/Deck";
-import { getAllDecks } from "../../firebase/firestore";
+import { getAllDecks } from "../firebase/firestore";
 import { DeckCard } from "../components/DeckCard/DeckCard";
 
 const DeckListPage: React.FC = () => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Grid, Title, Text } from "@mantine/core";
 import { Deck } from "../../data/interfaces/Deck";
-import { getDeck } from "../../firebase/firestore";
+import { getDeck } from "../firebase/firestore";
 import { DeckCard } from "../components/DeckCard/DeckCard";
 
 const BookmarkDeckPage: React.FC = () => {

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Select, Button, Stack, Title, Checkbox, TextInput } from "@mantine/core";
 import { QuestionType } from "../../data/interfaces/Test";
-import { createQuestion, linkQuestionToDeck } from "../../firebase/firestore";
+import { createQuestion, linkQuestionToDeck } from "../firebase/firestore";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 

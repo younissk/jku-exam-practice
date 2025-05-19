@@ -11,7 +11,7 @@ import {
 } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { FaCrown } from "react-icons/fa";
-import { getAllUsers } from "../../firebase/firestore";
+import { getAllUsers } from "../firebase/firestore";
 import { useEffect, useState } from "react";
 import { User } from "../../data/interfaces/User";
 

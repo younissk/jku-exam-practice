@@ -23,10 +23,10 @@ import { useDisclosure } from "@mantine/hooks";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "./useAuth";
 import { useState, useEffect } from "react";
-import { getUser, updateUser } from "../../firebase/firestore";
+import { getUser, updateUser } from "../firebase/firestore";
 import { User } from "firebase/auth";
 import UserXPIndicator from "../components/UserXPIndicator";
-import { logout } from "../../firebase/auth";
+import { logout } from "../firebase/auth";
 
 export function AppLayout() {
   const [opened, { toggle }] = useDisclosure();

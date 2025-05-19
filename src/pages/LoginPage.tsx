@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import {
   loginWithEmailAndPassword,
   registerWithEmailAndPassword,
-} from "../../firebase/auth";
+} from "../firebase/auth";
 import { useAuth } from "./useAuth";
 
 const LoginPage: React.FC = () => {
@@ -59,12 +59,20 @@ const LoginPage: React.FC = () => {
       });
 
       navigate("/");
-    } catch (error: any) {
-      notifications.show({
-        title: "Error",
-        message: error.message || "An unexpected error occurred.",
-        color: "red",
-      });
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        notifications.show({
+          title: "Error",
+          message: error.message || "An unexpected error occurred.",
+          color: "red",
+        });
+      } else {
+        notifications.show({
+          title: "Error",
+          message: "An unexpected error occurred.",
+          color: "red",
+        });
+      }
     } finally {
       setLoading(false);
     }
@@ -103,7 +111,13 @@ const LoginPage: React.FC = () => {
             }
           />
           <Button onClick={handleAction} fullWidth disabled={loading}>
-            {loading ? <Loader size="sm" color="white" /> : isRegister ? "Register" : "Login"}
+            {loading ? (
+              <Loader size="sm" color="white" />
+            ) : isRegister ? (
+              "Register"
+            ) : (
+              "Login"
+            )}
           </Button>
           <Text ta="center" size="sm">
             {isRegister ? "Already have an account?" : "New here?"}{" "}

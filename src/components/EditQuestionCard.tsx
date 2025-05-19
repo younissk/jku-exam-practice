@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, Button, Stack, Select, TextInput, Checkbox } from "@mantine/core";
 import 'react-quill/dist/quill.snow.css';
 import { Question, QuestionType } from "../../data/interfaces/Test";
-import { updateQuestion } from "../../firebase/firestore";
+import { updateQuestion } from "../firebase/firestore";
 import QuestionHTMLEditor from "../components/QuestionHTMLEditor";
 
 interface EditQuestionCardProps {

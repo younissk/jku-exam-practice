@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Text, Stack, Divider } from "@mantine/core";
 import { Question } from "../../../data/interfaces/Test";
-import { auth } from "../../../firebase";
+import { auth } from "../../firebase";
 import {
     addUserXP,
     createOrUpdateUser,
     getQuestionsByDeckId,
     getUser,
     updateDeckLeaderboard,
-} from "../../../firebase/firestore";
+} from "../../firebase/firestore";
 import QuestionInfo from "./QuestionInfo";
 import MultipleChoiceType from "./MultipleChoiceType";
 import TrueFalseType from "./TrueFalseType";
@@ -32,7 +32,7 @@ const DeckTestPage: React.FC = () => {
 
   const [correctSoFar, setCorrectSoFar] = useState(0);
 
-  const [answers, setAnswers] = useState<Record<string, any>>({});
+  const [answers, setAnswers] = useState<Record<string, string | string[]>>({});
 
   const [feedback, setFeedback] = useState<Record<string, FeedbackState>>({});
 

@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Container, Text, Title, Loader, Card, Grid } from "@mantine/core";
 import { FaCrown } from "react-icons/fa";
 import { Deck, LeaderboardItem } from "../../data/interfaces/Deck";
-import { getDeck, getUser } from "../../firebase/firestore";
+import { getDeck, getUser } from "../firebase/firestore";
 
 interface EnhancedLeaderboardItem extends LeaderboardItem {
   username?: string;

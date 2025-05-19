@@ -1,7 +1,7 @@
 // FILE: src/pages/DeckCreatePage.tsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createDeck } from "../../firebase/firestore";
+import { createDeck } from "../firebase/firestore";
 import { useAuth } from "./useAuth";
 import { Container, TextInput, NumberInput, Button, Title, Stack } from "@mantine/core";
 import { User } from "firebase/auth";

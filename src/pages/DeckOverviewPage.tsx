@@ -16,15 +16,16 @@ import {
   getDeck,
   getUser,
   getQuestionsByDeckId,
-} from "../../firebase/firestore";
+} from "../firebase/firestore";
 import { useAuth } from "./useAuth";
 import QuestionCard from "../components/QuestionCard";
+import { Question } from "../../data/interfaces/Test";
 
 const DeckOverviewPage: React.FC = () => {
   const { deckId } = useParams();
   const [deck, setDeck] = useState<Deck | null>(null);
   const [creatorName, setCreatorName] = useState<string | null>(null);
-  const [questions, setQuestions] = useState<any[]>([]);
+  const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAnswers, setShowAnswers] = useState(false);
   const { user } = useAuth();
