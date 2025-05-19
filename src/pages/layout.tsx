@@ -17,6 +17,7 @@ import {
   IconLogout,
   IconBookmark,
   IconMessage,
+  IconBrandGithub,
 } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -219,11 +220,24 @@ export function AppLayout() {
                   Login
                 </Button>
               )}
+
+              <Divider my="sm" />
+
+              <Button
+                variant="light"
+                leftSection={<IconBrandGithub size={18} />}
+                component="a"
+                href="https://github.com/younissk/jku-exam-practice"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Contribute on GitHub
+              </Button>
             </Stack>
           </div>
-        <Text ta="center" mt="md" size="s">
-          Made with 💻 from Vienna
-        </Text>
+          <Text ta="center" mt="md" size="s">
+            Made with 💻 from Vienna
+          </Text>
         </ScrollArea>
       </AppShell.Navbar>
 

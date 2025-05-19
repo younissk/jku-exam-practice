@@ -1,30 +1,15 @@
-# React + TypeScript + Vite
+# JKU Exam Practice
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is just a small app where users of JKU can add, share and practice their exam questions.
 
-Currently, two official plugins are available:
+idk yet if this is open source or just public source. We'll see how popular it gets.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Btw, the code is really ugly but Ill work towards making it better and more readable.
 
-## Expanding the ESLint configuration
+## Contributing
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+If you want to contribute to this project, please fork the repository and create a pull request.
 
-- Configure the top-level `parserOptions` property like this:
+Check out our [feedback page](https://jku-exam-simulator.netlify.app/feedback) or [GitHub issues](https://github.com/younissk/jku-exam-practice/issues) to find ways to contribute.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Im also open to see people do some design changes and make the app look better or even a logo.
