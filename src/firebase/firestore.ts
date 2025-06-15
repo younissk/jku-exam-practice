@@ -176,9 +176,12 @@ export const createDeck = async (deckData: Partial<Deck>): Promise<string> => {
     title: deckData.title || "Untitled Deck",
     questionIds: deckData.questionIds || [],
     leaderboard: deckData.leaderboard || [],
-    timer: deckData.timer,
     creatorId: deckData.creatorId || "unknown",
   };
+  // Only add timer if it's defined and not null
+  if (typeof deckData.timer === 'number') {
+    (newDeck as Deck & { timer: number }).timer = deckData.timer;
+  }
   const docRef = await addDoc(decksRef, newDeck);
   return docRef.id;
 };
@@ -205,8 +208,8 @@ export const updateDeck = async (deckId: string, data: Partial<Deck>) => {
 };
 
 /**
- * Add a question to a deck’s questionIds list, and also
- * add that deckId to the question’s deckIds array.
+ * Add a question to a deck's questionIds list, and also
+ * add that deckId to the question's deckIds array.
  */
 export const linkQuestionToDeck = async (
   deckId: string,
@@ -215,18 +218,18 @@ export const linkQuestionToDeck = async (
   const deckRef = doc(db, "decks", deckId);
   const questionRef = doc(db, "questions", questionId);
 
-  // 1) Add questionId to deck’s questionIds
+  // 1) Add questionId to deck's questionIds
   await updateDoc(deckRef, {
     questionIds: arrayUnion(questionId),
   });
-  // 2) Add deckId to question’s deckIds
+  // 2) Add deckId to question's deckIds
   await updateDoc(questionRef, {
     deckIds: arrayUnion(deckId),
   });
 };
 
 /**
- * Remove a question from a deck’s questionIds, etc.
+ * Remove a question from a deck's questionIds, etc.
  */
 export const unlinkQuestionFromDeck = async (
   deckId: string,
@@ -244,7 +247,7 @@ export const unlinkQuestionFromDeck = async (
 };
 
 /**
- * Example: add or update a user’s leaderboard entry in a deck.
+ * Example: add or update a user's leaderboard entry in a deck.
  */
 export const updateDeckLeaderboard = async (
   deckId: string,
@@ -316,13 +319,13 @@ export const createOrUpdateUser = async (
 };
 
 /**
- * Example: increment user’s XP by some amount
+ * Example: increment user's XP by some amount
  */
 export const addUserXP = async (userId: string, amount: number) => {
   const userRef = doc(db, "users", userId);
   const currentUser = await getUser(userId);
   if (!currentUser) {
-    // If user doc doesn’t exist yet, create one
+    // If user doc doesn't exist yet, create one
     await setDoc(userRef, { xp: amount });
   } else {
     const newXP = (currentUser.xp || 0) + amount;
